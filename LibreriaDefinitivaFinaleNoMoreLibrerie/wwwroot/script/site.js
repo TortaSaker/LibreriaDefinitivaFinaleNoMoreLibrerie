@@ -10,12 +10,67 @@
 //Fine carosello
 
 let bottoneCerca = document.getElementById("cerca");
+let bottoneCarica = document.getElementById("carica");
 bottoneCerca.addEventListener("click", function () {
     let input = document.getElementById("cerca-input").value;
 
     if (input == null) searchAllBooks();
     else searchBooksByQuery(input);
 });
+
+bottoneCarica.addEventListener("click", function () {
+    let isbn = document.getElementById("Isbn");
+    let titolo = document.getElementById("Titolo").value;
+    let autore = document.getElementById("Autore").value;
+    let genere = document.getElementById("Genere").value;
+    let prezzo = document.getElementById("Prezzo");
+    let quantita = document.getElementById("Quantità");
+    let edizione = document.getElementById("Edizione").value;
+
+    if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")   ||
+        !controlloCampoIsEmpty("Titolo", "inserisci questo campo") ||
+        !controlloCampoIsEmpty("Autore", "inserisci questo campo") ||
+        !controlloCampoIsEmpty("Genere", "inserisci questo campo") ||
+        !controlloCampoIsEmpty("Prezzo", "inserisci questo campo") ||
+        !controlloCampoIsEmpty("Quantità", "inserisci questo campo") ||
+        !controlloCampoIsEmpty("Edizione", "inserisci questo campo")) {
+        return;
+    };
+
+    if (isbn.value.length != 13 && isbn.value.length != 10) {
+        isbn.classList.add("input-error");
+        isbn.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
+        isbn.value = "";
+        return;
+    }
+    if (prezzo.value < 0) {
+        prezzo.classList.add("input-error");
+        prezzo.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
+        prezzo.value = "";
+        return;
+    }
+    if (quantita.value <= 0) {
+        quantita.classList.add("input-error");
+        quantita.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
+        quantita.value = "";
+        return;
+    }
+
+    addBook(isbn.value, titolo, autore, genere, prezzo.value, quantita.value, edizione);
+});
+
+function boolean controlloCampoIsEmpty(id, errorMessage) {
+    let field = document.getElementById(id);
+    if (field.value.trim() === "") {
+        field.classList.add("input-error");
+        field.placeholder = errorMessage;
+        return true;
+    } else {
+        field.classList.remove("input-error");
+        field.placeholder = ""; // Rimuove il messaggio di errore quando l'input è corretto
+        return false;
+    }
+}
 
 let container = document.getElementById("risultati-captati");
 container.innerHTML = "";
@@ -51,10 +106,19 @@ async function searchBooksByQuery(input) {
 
 }
 
-/*function addBook() {
-    fetch("/api/Libro/AddBook")
+function addBook(isbn, titolo, autore, genere, prezzo, quantita, edizione) {
+    let url = "/api/Libro/AddBook?isbn=" + isbn + "&titolo=" + titolo + "&autore=" + autore + "&genere" + genere + "&prezzo" + prezzo + "&quantita" + quantita + "&edizione" + edizione;
+    fetch(url).then(async (risultato) => {
+        const data = await risultato.json();
+        generaRisultati(data);
+    }).catch(error => {
+        console.error('Errore durante il fetch:', error);
+        paragrafoErrore.textContent = "Errore 500!";
+        container.appendChild(paragrafoErrore);
+    });
 }
 
+/*
 function removeBook() {
     fetch("/api/Libro/RemoveBooks")
 }*/

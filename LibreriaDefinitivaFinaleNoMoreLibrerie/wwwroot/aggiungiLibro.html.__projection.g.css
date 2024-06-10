@@ -66,3 +66,14 @@ img {
 height: 30px; width: auto
 }
 /* END EXTERNAL SOURCE */
+
+
+.input-error {
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+    .input-error::placeholder {
+        color: red;
+        font-weight: bold;
+    }

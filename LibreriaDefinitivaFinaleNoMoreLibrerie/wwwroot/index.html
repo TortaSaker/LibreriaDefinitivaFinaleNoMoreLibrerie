@@ -11,7 +11,7 @@
 	<script src="script/owl.carousel.min.js"></script>
 	<link rel="stylesheet" href="style/owl.carousel.min.css">
 	<link rel="stylesheet" href="style/owl.theme.default.min.css">
-	
+
 	<!-- Link per il foglio di stile CSS di Bootstrap -->
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -31,10 +31,23 @@
 				margin: 10px;
 			}
 
-                .owl-carousel .item img {
-                    width: 200px;
-                    heigh
-                }
+				.owl-carousel .item img {
+					width: 200px;
+					height: auto;
+				}
+
+        .header-container {
+            display: flex;
+            align-items: center;
+        }
+
+            .header-container img {
+                margin-right: 20px;
+            }
+
+            .header-container h1 {
+                margin: 0;
+            }
 	</style>
 	<script>
 		$(document).ready(function () {
@@ -62,16 +75,21 @@
 <body style="background-color: #d0d0d0">
 	<header>
 		<nav>
-			<img src="https://localhost:7268/images/icon.png" href="https://localhost:7268/index.html" alt="LogoNav" id="logonav" height="50px" width="50px">
-			<a href="https://localhost:7268/aggiungiLibro.html" id="add-book-link">Aggiungi un libro</a>
-			<a href="https://localhost:7268/rimuoviLibro.html" id="remove-book-link">Rimuovi un libro</a>
-			<a href="https://localhost:7268/cercaLibro.html" id="search-book-link">Cerca un libro</a>
+			<div>
+				<img id="logo" src="https://localhost:7268/images/logoNav.png" alt="Logo Libreria">
+				<a href="https://localhost:7268/index.html">Home</a>
+				<a href="https://localhost:7268/rimuoviLibro.html">Rimuovi Libro</a>
+				<a href="https://localhost:7268/cercaLibro.html">Catalogo</a>
+				<a href="https://localhost:7268/contatti.html">Contatti</a>
+				<a href="https://localhost:7268/carrello.html">Carrello</a>
+			</div>
 		</nav>
 	</header>
 	<div id="main-content">
 		<!-- Contenuto dinamico caricato qui -->
-		<div class="nome" align-items="center">
-			<img align="middle" src="https://localhost:7268/images/logoNav.png" alt="Logo" id="logo" style="height: 100px; width: auto">
+		<div class="header-container">
+			<img src="https://localhost:7268/images/logoNav.png" alt="Logo" id="logo" style="height: 100px; width: auto">
+			<h1>Benvenuto alla Frontiera Letteraria</h1>
 		</div>
 		<h4>I più venduti di oggi:</h4>
 		<div class="owl-carousel owl-theme">

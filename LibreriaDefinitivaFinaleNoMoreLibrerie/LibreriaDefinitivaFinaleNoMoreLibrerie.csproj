@@ -14,7 +14,6 @@
     <None Include="wwwroot\privacy.html.__projection.g.js" />
     <None Include="wwwroot\rimuoviLibro.html.__projection.g.js" />
     <None Include="wwwroot\script\owl.carousel.min.js" />
-    <None Include="wwwroot\script\site.js" />
     <None Include="wwwroot\terminiecondizioni.html.__projection.g.js" />
   </ItemGroup>
 

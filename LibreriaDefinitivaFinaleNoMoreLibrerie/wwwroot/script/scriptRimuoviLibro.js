@@ -1,69 +1,19 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    let bottoneCerca = document.getElementById("cerca");
-    let bottoneCarica = document.getElementById("carica");
     let bottoneRimuovi = document.getElementById("rimuovi");
     let container = document.getElementById("risultati-captati");
 
-    bottoneCerca.addEventListener("click", function () {
-        let input = document.getElementById("cerca-input").value;
-        if (!input) {
-            searchAllBooks();
-        } else {
-            searchBooksByQuery(input);
-        }
-    });
-
-    bottoneCarica.addEventListener("click", function () {
-        let isbn = document.getElementById("Isbn").value;
+    bottoneRimuovi.addEventListener("click", function () {
+        let isbn = document.getElementById("Isbn");
         let titolo = document.getElementById("Titolo").value;
         let autore = document.getElementById("Autore").value;
         let genere = document.getElementById("Genere").value;
-        let prezzo = document.getElementById("Prezzo").value;
-        let quantita = document.getElementById("Quantita").value;
+        let prezzo = document.getElementById("Prezzo");
+        let quantita = document.getElementById("Quantità");
         let edizione = document.getElementById("Edizione").value;
 
-        if (
-            controlloCampoIsEmpty("Isbn", "Inserisci questo campo") ||
-            controlloCampoIsEmpty("Titolo", "Inserisci questo campo") ||
-            controlloCampoIsEmpty("Autore", "Inserisci questo campo") ||
-            controlloCampoIsEmpty("Genere", "Inserisci questo campo") ||
-            controlloCampoIsEmpty("Prezzo", "Inserisci questo campo") ||
-            controlloCampoIsEmpty("Quantita", "Inserisci questo campo") ||
-            controlloCampoIsEmpty("Edizione", "Inserisci questo campo")
-        ) {
+        if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")) {
             return;
-        }
-
-        if (isbn.length != 13 && isbn.length != 10) {
-            mostraErroreInput("Isbn", "ISBN deve essere lungo 10 o 13 caratteri");
-            return;
-        }
-
-        if (prezzo < 0) {
-            mostraErroreInput("Prezzo", "Il prezzo deve essere positivo");
-            return;
-        }
-
-        if (quantita <= 0) {
-            mostraErroreInput("Quantita", "La quantità deve essere positiva");
-            return;
-        }
-
-        addBook(isbn, titolo, autore, genere, prezzo, quantita, edizione);
-    });
-
-bottoneRimuovi.addEventListener("click", function () {
-    let isbn = document.getElementById("Isbn");
-    let titolo = document.getElementById("Titolo").value;
-    let autore = document.getElementById("Autore").value;
-    let genere = document.getElementById("Genere").value;
-    let prezzo = document.getElementById("Prezzo");
-    let quantita = document.getElementById("Quantità");
-    let edizione = document.getElementById("Edizione").value;
-
-    if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")) {
-        return;
-    };*/
+        };
 
         if (isbn.length != 13 && isbn.length != 10) {
             mostraErroreInput("Isbn", "ISBN deve essere lungo 10 o 13 caratteri");
@@ -77,7 +27,7 @@ bottoneRimuovi.addEventListener("click", function () {
 
         removeBook(isbn, quantita);
     });
-
+    //Messo in tutti e tre 
     function controlloCampoIsEmpty(id, errorMessage) {
         let field = document.getElementById(id);
         if (field.value.trim() === "") {
@@ -96,57 +46,19 @@ bottoneRimuovi.addEventListener("click", function () {
         field.value = "";
     }
 
+    //MEsso in tutti 
     function rimuoviErroreInput(id) {
         let field = document.getElementById(id);
         field.classList.remove("input-error");
         field.placeholder = "";
     }
 
-    function searchAllBooks() {
-        fetch("/api/Libro/GetAllBooks")
-            .then(response => response.json())
-            .then(data => generaRisultati(data))
-            .catch(error => mostraMessaggioErrore("Errore durante il recupero dei libri: " + error));
-    }
 
-    function searchBooksByQuery(input) {
-        fetch(`/api/Libro/SearchBooks/${encodeURIComponent(input)}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Errore durante la ricerca dei libri");
-                }
-                return response.json();
-            })
-            .then(data => generaRisultati(data))
-            .catch(error => mostraMessaggioErrore(error.message));
-    }
 
-    function addBook(isbn, titolo, autore, genere, prezzo, quantita, edizione) {
-        fetch("/api/Libro/AddBook", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                isbn: isbn,
-                titolo: titolo,
-                autore: autore,
-                genere: genere,
-                prezzo: prezzo,
-                quantita: quantita,
-                edizione: edizione
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Errore durante l'aggiunta del libro");
-                }
-                return response.json();
-            })
-            .then(data => alert("Libro aggiunto con successo!"))
-            .catch(error => mostraMessaggioErrore(error.message));
-    }
+    //Aggiungi libro
 
+
+    //Rimuovi libro
     function removeBook(isbn, quantita) {
         fetch(`/api/Libro/RemoveBooks?isbn=${isbn}&quantita=${quantita}`, {
             method: "DELETE"
@@ -161,6 +73,7 @@ bottoneRimuovi.addEventListener("click", function () {
             .catch(error => mostraMessaggioErrore(error.message));
     }
 
+    //tutti e tre 
     function generaRisultati(data) {
         container.innerHTML = "";
 
@@ -215,6 +128,7 @@ bottoneRimuovi.addEventListener("click", function () {
         }
     }
 
+    //tutti e tre
     function mostraMessaggioErrore(message) {
         container.innerHTML = "";
         let paragrafoErrore = document.createElement("p");
@@ -223,4 +137,3 @@ bottoneRimuovi.addEventListener("click", function () {
         container.appendChild(paragrafoErrore);
     }
 });
-

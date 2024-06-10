@@ -8,8 +8,6 @@ body {
     padding: 0;
 }
 
-
-
 /* Header styles */
 nav {
     background-color: #333;
@@ -36,13 +34,6 @@ nav {
             color: #d0d0d0;
         }
 
-
-/* Logo styles */
-#logo {
-    height: 30px;
-    width: auto;
-}
-
 /* Main content styles */
 #main-content {
     padding: 20px;
@@ -57,49 +48,67 @@ h2 {
     color: #333;
 }
 
-/* Form styles */
-form {
+/* Cart styles */
+#carrello {
     margin-top: 20px;
+    width: 100%;
 }
 
-    form label {
-        display: block;
-        margin-top: 10px;
+    #carrello table {
+        width: 100%;
+        border-collapse: collapse;
     }
 
-    form input[type="text"],
-    form input[type="email"],
-    form textarea,
-    form select {
-        width: 100%;
+    #carrello th, #carrello td {
         padding: 10px;
-        margin-top: 5px;
         border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
+        text-align: left;
     }
 
-    form button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin-top: 20px;
-        background-color: #333;
-        color: #fff;
+    #carrello th {
+        background-color: #f2f2f2;
+    }
+
+    #carrello td input[type="number"] {
+        width: 60px;
+    }
+
+    #carrello td button.rimuovi {
+        background-color: #ff4d4d;
+        color: white;
         border: none;
+        padding: 5px 10px;
         border-radius: 5px;
         cursor: pointer;
     }
 
-        form button:hover {
+        #carrello td button.rimuovi:hover {
+            background-color: #ff1a1a;
+        }
+
+#totale-carrello {
+    margin-top: 20px;
+    text-align: right;
+}
+
+    #totale-carrello h3 {
+        color: #333;
+    }
+
+    #totale-carrello button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        #totale-carrello button:hover {
             background-color: #555;
         }
 
 /* Footer styles */
-.content {
-    flex: 1;
-}
-
 footer {
     background-color: #333;
     color: white;
@@ -119,6 +128,15 @@ footer {
         footer a:hover {
             text-decoration: underline;
         }
+
+/* Additional styles for specific pages */
+#add-book-form, #search-book-form {
+    margin-top: 20px;
+}
+
+.risultati-captati {
+    margin-top: 20px;
+}
 
 /* Owl Carousel styles */
 .owl-carousel {
@@ -147,13 +165,4 @@ footer {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-/* Additional styles for specific pages */
-#add-book-form, #search-book-form {
-    margin-top: 20px;
-}
-
-.risultati-captati {
-    margin-top: 20px;
 }

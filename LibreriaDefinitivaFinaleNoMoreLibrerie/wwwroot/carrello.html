@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrello - Libreria</title>
+    <link rel="stylesheet" href="style/site.css">
+</head>
+<body>
+    <nav>
+        <img id="logo" src="../images/logo.png" alt="Logo Libreria">
+        <div>
+            <a href="index.html">Home</a>
+            <a href="catalogo.html">Catalogo</a>
+            <a href="contatti.html">Contatti</a>
+            <a href="carrello.html">Carrello</a>
+        </div>
+    </nav>
+
+    <div id="main-content">
+        <h2>Il tuo Carrello</h2>
+        <div id="carrello">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Libro</th>
+                        <th>Prezzo</th>
+                        <th>Quantità</th>
+                        <th>Totale</th>
+                        <th>Rimuovi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Esempio di riga di libro nel carrello -->
+                    <tr>
+                        <td>Il Nome del Vento</td>
+                        <td>€15,00</td>
+                        <td><input type="number" value="1" min="1"></td>
+                        <td>€15,00</td>
+                        <td><button class="rimuovi">X</button></td>
+                    </tr>
+                    <!-- Altre righe di esempio possono essere aggiunte qui -->
+                </tbody>
+            </table>
+        </div>
+        <div id="totale-carrello">
+            <h3>Totale: €15,00</h3>
+            <button>Procedi all'acquisto</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Libreria. Tutti i diritti riservati.</p>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="termini.html">Termini e Condizioni</a>
+    </footer>
+</body>
+</html>

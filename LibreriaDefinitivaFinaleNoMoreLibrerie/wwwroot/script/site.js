@@ -53,7 +53,7 @@ bottoneCarica.addEventListener("click", function () {
     }
     if (quantita.value <= 0) {
         quantita.classList.add("input-error");
-        quantita.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
+        quantita.placeholder = "La quantità deve essere positiva";
         quantita.value = "";
         return;
     }
@@ -63,13 +63,8 @@ bottoneCarica.addEventListener("click", function () {
 
 bottoneRimuovi.addEventListener("click", function () {
     let isbn = document.getElementById("Isbn");
-    let titolo = document.getElementById("Titolo").value;
-    let autore = document.getElementById("Autore").value;
-    let genere = document.getElementById("Genere").value;
-    let prezzo = document.getElementById("Prezzo");
-    let quantita = document.getElementById("Quantità");
-    let edizione = document.getElementById("Edizione").value;
-
+    let quantita = document.getElementById("Quantita");
+    
     if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")) {
         return;
     };
@@ -80,20 +75,14 @@ bottoneRimuovi.addEventListener("click", function () {
         isbn.value = "";
         return;
     }
-    if (prezzo.value < 0) {
-        prezzo.classList.add("input-error");
-        prezzo.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
-        prezzo.value = "";
-        return;
-    }
-    if (quantita.value <= 0) {
+    if (quantita.value < 0) {
         quantita.classList.add("input-error");
-        quantita.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
+        quantita.placeholder = "La quantità deve essere positiva";
         quantita.value = "";
         return;
     }
 
-    addBook(isbn.value, titolo, autore, genere, prezzo.value, quantita.value, edizione);
+    remoeBook(isbn.value, quantita.value);
 });
 
 function boolean controlloCampoIsEmpty(id, errorMessage) {
@@ -147,7 +136,7 @@ function addBook(isbn, titolo, autore, genere, prezzo, quantita, edizione) {
     let url = "/api/Libro/AddBook?isbn=" + isbn + "&titolo=" + titolo + "&autore=" + autore + "&genere" + genere + "&prezzo" + prezzo + "&quantita" + quantita + "&edizione" + edizione;
     fetch(url).then(async (risultato) => {
         const data = await risultato.json();
-        generaRisultati(data);
+        alert("Libro aggiunto con successo! :J");
     }).catch(error => {
         console.error('Errore durante il fetch:', error);
         paragrafoErrore.textContent = "Errore 500!";
@@ -155,10 +144,18 @@ function addBook(isbn, titolo, autore, genere, prezzo, quantita, edizione) {
     });
 }
 
-/*
-function removeBook() {
-    fetch("/api/Libro/RemoveBooks")
-}*/
+
+function removeBook(isbn, quantita) {
+    let url = "/api/Libro/RemoveBooks?isbn=" + isbn + "&quantita=" + quantita;
+    fetch(url).then(async (risultato) => {
+        const data = await risultato.json();
+        alert("Libro rimosso con successo! :J");
+    }).catch(error => {
+        console.error('Errore durante il fetch:', error);
+        paragrafoErrore.textContent = "Errore 500!";
+        container.appendChild(paragrafoErrore);
+    });
+}
 
 function generaRisultati(data) {
     container.innerHTML = "";

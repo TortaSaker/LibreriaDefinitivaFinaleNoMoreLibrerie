@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://localhost:44315/images/icon.png">
+    <title>Contatti - La Libreria del Vezzo</title>
+    <link rel="stylesheet" href="style/site.css">
+    <script defer src="script/site.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="style/owl.carousel.min.css">
+    <link rel="stylesheet" href="style/owl.theme.default.min.css">
+
+    <!-- Link per il foglio di stile CSS di Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link per lo script JavaScript di Bootstrap (opzionale, solo se si utilizzano componenti che richiedono JavaScript) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Link per il bundle completo di JavaScript di Bootstrap, che include jQuery e Popper.js (opzionale, solo se si utilizzano componenti che richiedono JavaScript) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .owl-carousel {
+            display: flex;
+            justify-content: center;
+        }
+
+            .owl-carousel .item {
+                margin: 10px;
+            }
+
+                .owl-carousel .item img {
+                    width: 200px;
+                    heigh
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 5
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body style="background-color: #d0d0d0">
+    <header>
+        <nav>
+            <a href="https://localhost:44315/index.html">
+                <img src="images/logoNav.png" alt="Logo" id="logo" style="height: 30px; width: auto">
+            </a>
+            <a href="https://localhost:44315/aggiungiLibro.html" id="add-book-link">Aggiungi un libro</a>
+            <a href="https://localhost:44315/rimuoviLibro.html" id="remove-book-link">Rimuovi un libro</a>
+            <a href="https://localhost:44315/cercaLibro.html" id="search-book-link">Cerca un libro</a>
+        </nav>
+    </header>
+    <div id="main-content">
+        <h2>Contatti</h2>
+        <p>Se hai domande, non esitare a contattarci utilizzando le informazioni qui sotto o il modulo di contatto.</p>
+        <ul>
+            <li><strong>Sito web aziendale:</strong> <a href="https://reti.it/" target="_blank">https://reti.it/</a></li>
+            <li><strong>Indirizzo email:</strong> <a href="mailto:drivepcto@gmail.com">drivepcto@gmail.com</a></li>
+            <li><strong>Numero di telefono:</strong> <a href="tel:+390331357400">0331 357400</a></li>
+        </ul>
+        <form action="mailto:drivepcto@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Messaggio:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Invia</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 La Frontiera Letteraria. Tutti i diritti riservati.</p>
+        <p>
+            <a href="https://localhost:44315/contatti.html">Contatti</a> |
+            <a href="https://localhost:44315/privacy.html">Privacy</a> |
+            <a href="https://localhost:44315/terminiecondizioni.html">Termini e condizioni</a>
+        </p>
+    </footer>
+</body>
+</html>

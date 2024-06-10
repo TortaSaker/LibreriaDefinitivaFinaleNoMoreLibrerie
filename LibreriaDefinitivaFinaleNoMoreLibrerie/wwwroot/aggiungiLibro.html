@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://localhost:44315/images/icon.png">
+    <title>Aggiungi un libro</title>
+    <link rel="stylesheet" href="style/site.css">
+    <script defer src="script/site.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="style/owl.carousel.min.css">
+    <link rel="stylesheet" href="style/owl.theme.default.min.css">
+
+    <!-- Link per il foglio di stile CSS di Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link per lo script JavaScript di Bootstrap (opzionale, solo se si utilizzano componenti che richiedono JavaScript) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Link per il bundle completo di JavaScript di Bootstrap, che include jQuery e Popper.js (opzionale, solo se si utilizzano componenti che richiedono JavaScript) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .owl-carousel {
+            display: flex;
+            justify-content: center;
+        }
+
+            .owl-carousel .item {
+                margin: 10px;
+            }
+
+                .owl-carousel .item img {
+                    width: 200px;
+                    heigh
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 5
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body style="background-color: #d0d0d0">
+    <header>
+        <nav>
+            <a href="https://localhost:44315/index.html">
+                <img src="https://localhost:44315/images/logoNav.png" alt="Logo" id="logo" style="height: 30px; width: auto">
+            </a>
+            <a href="https://localhost:44315/aggiungiLibro.html" id="add-book-link">Aggiungi un libro</a>
+            <a href="https://localhost:44315/rimuoviLibro.html" id="remove-book-link">Rimuovi un libro</a>
+            <a href="https://localhost:44315/cercaLibro.html" id="search-book-link">Cerca un libro</a>
+        </nav>
+    </header>
+    <div id="main-content">
+        <h2>Aggiungi un libro</h2>
+        <form id="add-book-form">
+            <label for="isbn">ISBN:</label><br>
+            <input type="text" id="Isbn" name="Isbn" placeholder="Es. 9881234567890"><br>
+            <label for="title">Titolo:</label><br>
+            <input type="text" id="Titolo" name="Titolo" placeholder="Es. La Compagnia dell'Anello"><br>
+            <label for="author">Autore:</label><br>
+            <input type="text" id="Autore" name="Autore" placeholder="Es. J.R.R. Tolkien"><br>
+            <label for="genre">Genere:</label><br>
+            <input type="text" id="Genere" name="Genere" placeholder="Es. Fantasy"><br>
+            <label for="Prezzo">Prezzo:</label><br>
+            <input type="text" id="Prezzo" name="Prezzo" placeholder="Es. 12.50"><br>
+            <label for="Quantità">Quantità:</label><br />
+            <input type="text" id="Quantità" name="Quantità" placeholder="Es. 4"><br>
+            <label for="year">Edizione:</label><br>
+            <input type="text" id="Edizione" name="Edizione" placeholder="Es. Mondadori(2024)"><br>
+            <button type="submit">Carica</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 La Frontiera Letteraria. Tutti i diritti riservati.</p>
+        <p>
+            <a href="https://localhost:
+               /contatti.html">Contatti</a> |
+            <a href="https://localhost:44315/privacy.html">Privacy</a> |
+            <a href="https://localhost:44315/terminiecondizioni.html">Termini e condizioni</a>
+        </p>
+    </footer>
+</body>
+</html>

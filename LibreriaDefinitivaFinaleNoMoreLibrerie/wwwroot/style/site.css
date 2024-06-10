@@ -1,0 +1,149 @@
+﻿/* Base styles */
+body {
+    background-color: #d0d0d0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+nav {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    nav #logo {
+        height: 30px; /* Imposta l'altezza desiderata */
+        width: auto; /* Lascia che la larghezza si adatti proporzionalmente */
+        margin-right: 20px; /* Aggiungi margine destro per separare l'immagine dagli altri link */
+    }
+
+    nav a {
+        color: #d0d0d0;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+    }
+
+        nav a:hover {
+            color: #d0d0d0;
+        }
+
+
+/* Logo styles */
+#logo {
+    height: 30px;
+    width: auto;
+}
+
+/* Main content styles */
+#main-content {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #333;
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+}
+
+    form label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form textarea,
+    form select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    form button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        form button:hover {
+            background-color: #555;
+        }
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 20px;
+}
+
+    footer a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0 10px;
+    }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+/* Owl Carousel styles */
+.owl-carousel {
+    display: flex;
+    justify-content: center;
+}
+
+    .owl-carousel .item {
+        margin: 10px;
+    }
+
+        .owl-carousel .item img {
+            width: 100px;
+            height: auto;
+        }
+
+/* Genre filter styles */
+#filtroGenere {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#genere-select {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Additional styles for specific pages */
+#add-book-form, #search-book-form {
+    margin-top: 20px;
+}
+
+.risultati-captati {
+    margin-top: 20px;
+}

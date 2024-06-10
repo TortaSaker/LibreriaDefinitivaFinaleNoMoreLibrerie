@@ -1,10 +1,14 @@
 ﻿/* Base styles */
 body {
-    background-color: #d0d0d0;
+    background-image: url("../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; /* Copre l'intero schermo con l'immagine di sfondo */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
+
+
 
 /* Header styles */
 nav {
@@ -46,7 +50,7 @@ nav {
     margin: 0 auto;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    flex: 1;
 }
 
 h2 {
@@ -92,12 +96,18 @@ form {
         }
 
 /* Footer styles */
+.content {
+    flex: 1;
+}
+
 footer {
     background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+    color: white;
+    padding: 20px;
     text-align: center;
-    margin-top: 20px;
+    border-bottom: 0;
+    border-top: 5px;
+    position: static;
 }
 
     footer a {

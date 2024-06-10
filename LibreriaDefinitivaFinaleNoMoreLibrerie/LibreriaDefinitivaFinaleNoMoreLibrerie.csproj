@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\aggiungiLibro.html.__projection.g.js" />
+    <None Include="wwwroot\cercaLibro.html.__projection.g.js" />
+    <None Include="wwwroot\contatti.html.__projection.g.js" />
+    <None Include="wwwroot\index.html.__projection.g.js" />
+    <None Include="wwwroot\privacy.html.__projection.g.js" />
+    <None Include="wwwroot\rimuoviLibro.html.__projection.g.js" />
+    <None Include="wwwroot\script\owl.carousel.min.js" />
+    <None Include="wwwroot\script\site.js" />
+    <None Include="wwwroot\terminiecondizioni.html.__projection.g.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />

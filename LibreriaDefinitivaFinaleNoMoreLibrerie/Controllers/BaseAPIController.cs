@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace LibreriaDefinitiva.Controllers
+namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]

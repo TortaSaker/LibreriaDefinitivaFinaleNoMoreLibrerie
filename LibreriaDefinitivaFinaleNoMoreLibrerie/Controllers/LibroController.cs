@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
 {
-    public class LibroController : BaseAPIController
+    public class LibroController : LibreriaDefinitiva.Controllers.BaseAPIController
     {
         private readonly ApplicationDbContext _db;
         private readonly ILogger<LibroController> _logger;

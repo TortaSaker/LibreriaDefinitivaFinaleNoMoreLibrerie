@@ -11,6 +11,8 @@
 
 let bottoneCerca = document.getElementById("cerca");
 let bottoneCarica = document.getElementById("carica");
+let bottoneRimuovi = document.getElementById("rimuovi");
+
 bottoneCerca.addEventListener("click", function () {
     let input = document.getElementById("cerca-input").value;
 
@@ -59,6 +61,41 @@ bottoneCarica.addEventListener("click", function () {
     addBook(isbn.value, titolo, autore, genere, prezzo.value, quantita.value, edizione);
 });
 
+bottoneRimuovi.addEventListener("click", function () {
+    let isbn = document.getElementById("Isbn");
+    let titolo = document.getElementById("Titolo").value;
+    let autore = document.getElementById("Autore").value;
+    let genere = document.getElementById("Genere").value;
+    let prezzo = document.getElementById("Prezzo");
+    let quantita = document.getElementById("Quantità");
+    let edizione = document.getElementById("Edizione").value;
+
+    if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")) {
+        return;
+    };
+
+    if (isbn.value.length != 13 && isbn.value.length != 10) {
+        isbn.classList.add("input-error");
+        isbn.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
+        isbn.value = "";
+        return;
+    }
+    if (prezzo.value < 0) {
+        prezzo.classList.add("input-error");
+        prezzo.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
+        prezzo.value = "";
+        return;
+    }
+    if (quantita.value <= 0) {
+        quantita.classList.add("input-error");
+        quantita.placeholder = "ISBN deve essere lungo 10 o 13 caratteri";
+        quantita.value = "";
+        return;
+    }
+
+    addBook(isbn.value, titolo, autore, genere, prezzo.value, quantita.value, edizione);
+});
+
 function boolean controlloCampoIsEmpty(id, errorMessage) {
     let field = document.getElementById(id);
     if (field.value.trim() === "") {
@@ -67,7 +104,7 @@ function boolean controlloCampoIsEmpty(id, errorMessage) {
         return true;
     } else {
         field.classList.remove("input-error");
-        field.placeholder = ""; // Rimuove il messaggio di errore quando l'input è corretto
+        field.placeholder = "";
         return false;
     }
 }

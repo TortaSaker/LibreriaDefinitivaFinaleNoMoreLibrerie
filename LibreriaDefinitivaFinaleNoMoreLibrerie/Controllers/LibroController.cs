@@ -93,7 +93,7 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
         {
             var books = _db.Scaffali
                                 .SelectMany(s => s.ScaffaleDiLibri)
-                                .Where(b => b.Titolo.ToLower().Contains(query.ToLower()) || b.Autore.ToLower().Contains(query.ToLower()) || b.Isbn.Contains(query) || b.Genere.ToLower() == query.ToLower())
+                                .Where(b => b.Titolo.ToLower().Contains(query.ToLower()) || b.Autore.ToLower().Contains(query.ToLower()) || b.Isbn.Contains(query) || b.Genere.ToLower() == query.ToLower() || b.Prezzo <= int.Parse(query))
                                 .ToList();
             if (!books.Any()) return NotFound(new { error = "Non sono presenti libri con queste caratteristiche" });
             return Ok(books);

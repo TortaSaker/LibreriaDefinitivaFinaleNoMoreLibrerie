@@ -4,12 +4,7 @@
 
     bottoneRimuovi.addEventListener("click", function () {
         let isbn = document.getElementById("Isbn");
-        let titolo = document.getElementById("Titolo").value;
-        let autore = document.getElementById("Autore").value;
-        let genere = document.getElementById("Genere").value;
-        let prezzo = document.getElementById("Prezzo");
         let quantita = document.getElementById("Quantità");
-        let edizione = document.getElementById("Edizione").value;
 
         if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")) {
             return;
@@ -74,59 +69,7 @@
     }
 
     //tutti e tre 
-    function generaRisultati(data) {
-        container.innerHTML = "";
-
-        if (!data || data.length === 0) {
-            mostraMessaggioErrore("Non sono stati trovati libri con queste caratteristiche.");
-        } else {
-            data.forEach(libro => {
-                let card = document.createElement("div");
-                card.classList.add("card");
-
-                let cardBody = document.createElement("div");
-                cardBody.classList.add("card-body");
-
-                let cardTitolo = document.createElement("h5");
-                cardTitolo.classList.add("card-title");
-                cardTitolo.textContent = libro.titolo;
-                cardBody.appendChild(cardTitolo);
-
-                let cardAutore = document.createElement("h6");
-                cardAutore.classList.add("card-subtitle", "mb-2", "text-muted");
-                cardAutore.textContent = libro.autore;
-                cardBody.appendChild(cardAutore);
-
-                let cardIsbn = document.createElement("p");
-                cardIsbn.classList.add("card-text");
-                cardIsbn.textContent = "ISBN: " + libro.isbn;
-                cardBody.appendChild(cardIsbn);
-
-                let cardGenere = document.createElement("p");
-                cardGenere.classList.add("card-text");
-                cardGenere.textContent = "Genere: " + libro.genere;
-                cardBody.appendChild(cardGenere);
-
-                let cardEdizione = document.createElement("p");
-                cardEdizione.classList.add("card-text");
-                cardEdizione.textContent = "Edizione: " + libro.edizione;
-                cardBody.appendChild(cardEdizione);
-
-                let cardPrezzo = document.createElement("p");
-                cardPrezzo.classList.add("card-text");
-                cardPrezzo.textContent = "Prezzo: " + libro.prezzo + " €";
-                cardBody.appendChild(cardPrezzo);
-
-                let cardQuantita = document.createElement("p");
-                cardQuantita.classList.add("card-text");
-                cardQuantita.textContent = "Quantità disponibile: " + libro.quantita;
-                cardBody.appendChild(cardQuantita);
-
-                card.appendChild(cardBody);
-                container.appendChild(card);
-            });
-        }
-    }
+    
 
     //tutti e tre
     function mostraMessaggioErrore(message) {

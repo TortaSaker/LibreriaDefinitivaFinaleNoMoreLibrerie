@@ -29,7 +29,7 @@ bottoneCarica.addEventListener("click", function () {
     let quantita = document.getElementById("Quantità");
     let edizione = document.getElementById("Edizione").value;
 
-    if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")   ||
+    /*if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")   ||
         !controlloCampoIsEmpty("Titolo", "inserisci questo campo") ||
         !controlloCampoIsEmpty("Autore", "inserisci questo campo") ||
         !controlloCampoIsEmpty("Genere", "inserisci questo campo") ||
@@ -37,7 +37,7 @@ bottoneCarica.addEventListener("click", function () {
         !controlloCampoIsEmpty("Quantità", "inserisci questo campo") ||
         !controlloCampoIsEmpty("Edizione", "inserisci questo campo")) {
         return;
-    };
+    };*/
 
     if (isbn.value.length != 13 && isbn.value.length != 10) {
         isbn.classList.add("input-error");
@@ -63,11 +63,16 @@ bottoneCarica.addEventListener("click", function () {
 
 bottoneRimuovi.addEventListener("click", function () {
     let isbn = document.getElementById("Isbn");
-    let quantita = document.getElementById("Quantita");
-    
+    let titolo = document.getElementById("Titolo").value;
+    let autore = document.getElementById("Autore").value;
+    let genere = document.getElementById("Genere").value;
+    let prezzo = document.getElementById("Prezzo");
+    let quantita = document.getElementById("Quantità");
+    let edizione = document.getElementById("Edizione").value;
+
     if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")) {
         return;
-    };
+    };*/
 
     if (isbn.value.length != 13 && isbn.value.length != 10) {
         isbn.classList.add("input-error");
@@ -85,7 +90,7 @@ bottoneRimuovi.addEventListener("click", function () {
     remoeBook(isbn.value, quantita.value);
 });
 
-function boolean controlloCampoIsEmpty(id, errorMessage) {
+/*function boolean controlloCampoIsEmpty(id, errorMessage) {
     let field = document.getElementById(id);
     if (field.value.trim() === "") {
         field.classList.add("input-error");
@@ -96,7 +101,7 @@ function boolean controlloCampoIsEmpty(id, errorMessage) {
         field.placeholder = "";
         return false;
     }
-}
+}*/
 
 let container = document.getElementById("risultati-captati");
 container.innerHTML = "";
@@ -168,7 +173,7 @@ function generaRisultati(data) {
     } else {
         for (let i = 0; i < data.length; i++) {
             let TitoloJ = data[i].Titolo;
-            let ImgPath = titoloJ + ".jpg";
+            let ImgPath = "../images/copertine/" + titoloJ + ".jpg";
             let PrezzoJ = data[i].Prezzo + " €";
             let AutoreJ = data[i].Autore;
 

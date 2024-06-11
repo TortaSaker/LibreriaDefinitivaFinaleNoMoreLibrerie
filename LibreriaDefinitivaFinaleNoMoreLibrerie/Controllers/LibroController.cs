@@ -46,6 +46,11 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult AddBook(string isbn, string titolo, string autore, string genere, double prezzo, int quantita, string edizione)
         {
+            if (string.IsNullOrWhiteSpace(isbn) || string.IsNullOrWhiteSpace(titolo) || string.IsNullOrWhiteSpace(autore) || string.IsNullOrWhiteSpace(genere))
+            {
+                return BadRequest(new { error = "Tutti i campi devono essere compilati" });
+            }
+
             var libroTrovato = _db.Libri.FirstOrDefault(l => l.Isbn == isbn);
 
             if (libroTrovato != null)
@@ -66,6 +71,7 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
                     };
                     _db.Scaffali.Add(scaffale);
                 }
+
                 Libro model = new Libro
                 {
                     Isbn = isbn,
@@ -81,7 +87,7 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
 
                 _db.Libri.Add(model);
                 _db.SaveChanges();
-                return CreatedAtRoute("SearchBooks", new { query = isbn }, libroTrovato);
+                return CreatedAtRoute("SearchBooks", new { query = isbn }, model);
             }
         }
 
@@ -91,11 +97,31 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult SearchBooks(string query)
         {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return BadRequest(new { error = "Il parametro di ricerca non può essere vuoto" });
+            }
+
+            // Converting query to lower case once for reuse
+            string lowerQuery = query.ToLower();
+            // Variable to store the parsed price if the query is a valid double
+            double parsedPrice;
+            bool isNumeric = double.TryParse(query, out parsedPrice);
+
             var books = _db.Scaffali
-                                .SelectMany(s => s.ScaffaleDiLibri)
-                                .Where(b => b.Titolo.ToLower().Contains(query.ToLower()) || b.Autore.ToLower().Contains(query.ToLower()) || b.Isbn.Contains(query) || b.Genere.ToLower() == query.ToLower() || b.Prezzo <= int.Parse(query))
-                                .ToList();
-            if (!books.Any()) return NotFound(new { error = "Non sono presenti libri con queste caratteristiche" });
+                            .SelectMany(s => s.ScaffaleDiLibri)
+                            .Where(b => b.Titolo.ToLower().Contains(lowerQuery) ||
+                                        b.Autore.ToLower().Contains(lowerQuery) ||
+                                        b.Isbn.Contains(query) ||
+                                        b.Genere.ToLower() == lowerQuery ||
+                                        (isNumeric && b.Prezzo <= parsedPrice))
+                            .ToList();
+
+            if (!books.Any())
+            {
+                return NotFound(new { error = "Non sono presenti libri con queste caratteristiche" });
+            }
+
             return Ok(books);
         }
 
@@ -107,6 +133,10 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult RemoveBooks(string isbn, int quantita)
         {
+            if (string.IsNullOrWhiteSpace(isbn))
+            {
+                return BadRequest(new { error = "ISBN non può essere vuoto" });
+            }
             var libroTrovato = _db.Libri.FirstOrDefault(l => l.Isbn == isbn);
 
             if (libroTrovato == null)
@@ -132,7 +162,5 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
 
             return libroTrovato.Quantita == 0 ? NoContent() : Ok(libroTrovato);
         }
-        //Tutto corretto fino a qui DDP
-
     }
 }

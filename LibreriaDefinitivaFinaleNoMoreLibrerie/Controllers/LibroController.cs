@@ -41,7 +41,7 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
             return Ok(books.ToList());
         }
 
-        [HttpPost]
+        [HttpPost("{isbn}/{titolo}/{autore}/{genere}/{prezzo}/{quantita}/{edizione}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult AddBook(string isbn, string titolo, string autore, string genere, double prezzo, int quantita, string edizione)

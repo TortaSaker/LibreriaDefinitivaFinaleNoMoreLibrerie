@@ -1,5 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
-    let bottoneCerca = document.getElementById("cerca");
+﻿    let bottoneCerca = document.getElementById("cerca");
     let container = document.getElementById("risultati-captati"); 
     //cerca libro
     bottoneCerca.addEventListener("click", function () {
@@ -118,4 +117,3 @@
         paragrafoErrore.textContent = message;
         container.appendChild(paragrafoErrore);
     }
-});

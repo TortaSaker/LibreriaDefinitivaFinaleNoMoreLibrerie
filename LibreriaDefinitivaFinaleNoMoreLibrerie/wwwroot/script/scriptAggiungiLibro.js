@@ -1,5 +1,4 @@
 ﻿//Aggiugni un libro alla lista
-document.addEventListener("DOMContentLoaded", function () {
     let bottoneCarica = document.getElementById("carica");
     let container = document.getElementById("risultati-captati"); 
     bottoneCarica.addEventListener("click", function () {
@@ -8,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let autore = document.getElementById("Autore").value;
         let genere = document.getElementById("Genere").value;
         let prezzo = parseFloat(document.getElementById("Prezzo").value);
-        let quantita = parseInt(document.getElementById("Quantità").value);
+        let quantita = parseInt(document.getElementById("Quantità").textContent);
         let edizione = document.getElementById("Edizione").value;
 
         if (
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             controlloCampoIsEmpty("Autore", "Inserisci questo campo") ||
             controlloCampoIsEmpty("Genere", "Inserisci questo campo") ||
             controlloCampoIsEmpty("Prezzo", "Inserisci questo campo") ||
-            controlloCampoIsEmpty("Quantita", "Inserisci questo campo") ||
+            controlloCampoIsEmpty("Quantità", "Inserisci questo campo") ||
             controlloCampoIsEmpty("Edizione", "Inserisci questo campo")
         ) {
             return;
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //Messo in tutti e tre 
     function controlloCampoIsEmpty(id, errorMessage) {
         let field = document.getElementById(id);
-        if (field.value.trim() === "") {
+        if (field.textContent.trim() === "") {
             mostraErroreInput(id, errorMessage);
             return true;
         } else {
@@ -66,20 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
         field.placeholder = "";
     }
     function addBook(isbn, titolo, autore, genere, prezzo, quantita, edizione) {
-        fetch("/api/Libro/AddBook", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                isbn: isbn,
-                titolo: titolo,
-                autore: autore,
-                genere: genere,
-                prezzo: prezzo,
-                quantita: quantita,
-                edizione: edizione
-            })
+        fetch(`/api/Libro/AddBook/${isbn}/${titolo}/${autore}/${genere}/${prezzo}/${quantita}/${edizione}`, {
+            method: "POST"
         })
             .then(response => {
                 if (!response.ok) {
@@ -99,4 +86,3 @@ document.addEventListener("DOMContentLoaded", function () {
         paragrafoErrore.textContent = message;
         container.appendChild(paragrafoErrore);
     }
-)};

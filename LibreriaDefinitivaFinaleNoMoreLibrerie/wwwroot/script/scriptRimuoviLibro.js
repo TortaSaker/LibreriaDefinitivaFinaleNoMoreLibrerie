@@ -1,5 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
-    let bottoneRimuovi = document.getElementById("rimuovi");
+﻿    let bottoneRimuovi = document.getElementById("rimuovi");
     let container = document.getElementById("risultati-captati");
 
     bottoneRimuovi.addEventListener("click", function () {
@@ -79,4 +78,3 @@
         paragrafoErrore.textContent = message;
         container.appendChild(paragrafoErrore);
     }
-});

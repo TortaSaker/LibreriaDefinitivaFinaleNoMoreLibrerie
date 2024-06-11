@@ -4,18 +4,32 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Aggiungi i servizi al container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
 });
 
-builder.Services.AddControllers(
-    options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
-builder.Services.AddControllers().AddJsonOptions(options =>
+builder.Services.AddControllers(options =>
+{
+    options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true;
+}).AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
 });
+
+// Configura i CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:7268") // Sostituisci con il dominio del tuo client se necessario
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -28,7 +42,7 @@ using (var scope = app.Services.CreateScope())
     ApplicationDbContext context = services.GetRequiredService<ApplicationDbContext>();
 }
 
-// Configure the HTTP request pipeline.
+// Configura la pipeline delle richieste HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -36,6 +50,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Abilita i CORS usando la policy configurata
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 app.UseStaticFiles();

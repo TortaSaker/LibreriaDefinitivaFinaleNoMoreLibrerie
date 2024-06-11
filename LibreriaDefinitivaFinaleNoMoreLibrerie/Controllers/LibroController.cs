@@ -102,9 +102,8 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
                 return BadRequest(new { error = "Il parametro di ricerca non può essere vuoto" });
             }
 
-            // Converting query to lower case once for reuse
             string lowerQuery = query.ToLower();
-            // Variable to store the parsed price if the query is a valid double
+
             double parsedPrice;
             bool isNumeric = double.TryParse(query, out parsedPrice);
 

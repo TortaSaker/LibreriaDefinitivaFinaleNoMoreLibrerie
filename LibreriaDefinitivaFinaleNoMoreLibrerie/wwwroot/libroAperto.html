@@ -53,6 +53,41 @@
             }
         });
     </script>
+    <style>
+        /* Style for buttons */
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+            button:hover {
+                background-color: #45a049;
+                transform: scale(1.02);
+            }
+
+            button:active {
+                background-color: #3e8e41;
+                transform: scale(0.98);
+            }
+
+        /* Additional styling for better visual presentation */
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 
 </head>
 <body>
@@ -72,13 +107,13 @@
     <div id="main-content">
         <div id="book-detail">
             <div id="book-cover">
-                <img src="images/copertine/Anna Karenina.jpg" alt="Copertina del Libro">
+                <img src="https://localhost:7268/images/copertine/Anna%20Karenina.jpg" alt="Copertina del Libro">
             </div>
             <div id="book-info">
                 <div id="book-title">
                     <h1>Anna Karenina</h1>
-                    <p>€14.00</p>
-                    <button id="add-to-cart">Aggiungi al Carrello</button>
+                    <p>€00.00</p>
+                    <button id="aggiungi-al-carrello">Aggiungi al Carrello</button>
                 </div>
             </div>
         </div>

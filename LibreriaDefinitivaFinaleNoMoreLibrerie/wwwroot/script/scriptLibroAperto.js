@@ -1,11 +1,11 @@
-﻿/*document.addEventListener('DOMContentLoaded', function () {
-    let t = document.getElementById('immg');
+﻿document.addEventListener('DOMContentLoaded', function () {
+    let t = document.getElementById('titolo');
     fetch('/api/LibroAPI')
         .then(response => response.json())
         .then(data => {
             data.forEach(b => {
                 let l = document.createElement('a');
-                l.href = `pages/novita.html?isbn=${b.isbn}`;  // Pass ISBN via query string
+                l.href = `pages/libroApero.html?isbn=${b.isbn}`;  // Pass ISBN via query string
                 let m = document.createElement('img');
                 m.src = `${b.url}`;
                 m.id = "g";
@@ -22,4 +22,3 @@
         })
         .catch(error => console.error('Error fetching data:', error));
 });
-*/

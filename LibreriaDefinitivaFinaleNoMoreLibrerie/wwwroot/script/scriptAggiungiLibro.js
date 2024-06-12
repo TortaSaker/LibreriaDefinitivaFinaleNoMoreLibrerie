@@ -21,7 +21,7 @@
         ) {
             return;
         }
-        alert("finiti i controlli di nullita");
+
         if (isbn.length != 13 && isbn.length != 10) {
             mostraErroreInput("Isbn", "ISBN deve essere lungo 10 o 13 caratteri");
             return;
@@ -36,7 +36,7 @@
             mostraErroreInput("Quantita", "La quantità deve essere positiva");
             return;
         }
-        alert("finiti anche gli altri");
+
         addBook(isbn, titolo, autore, genere, prezzo, quantita, edizione);
     });
 function controlloCampoIsEmpty(id, errorMessage) {
@@ -65,7 +65,6 @@ function rimuoviErroreInput(id) {
 }
 
     function addBook(isbn, titolo, autore, genere, prezzo, quantita, edizione) {
-        alert("pre fetch");
         fetch(`/api/Libro/AddBook/${isbn}/${titolo}/${autore}/${genere}/${prezzo}/${quantita}/${edizione}`, {
             method: "POST"
         })

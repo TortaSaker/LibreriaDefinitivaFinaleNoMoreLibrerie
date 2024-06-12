@@ -1,5 +1,5 @@
 ﻿/*document.addEventListener('DOMContentLoaded', function () {
-    let t = document.getElementById('immg');
+    let t = document.getElementById('titolo');
     fetch('/api/LibroAPI')
         .then(response => response.json())
         .then(data => {

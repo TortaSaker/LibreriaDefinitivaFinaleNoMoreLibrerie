@@ -284,3 +284,13 @@ input[type="text"]:focus, select:focus {
             .card button:hover {
                 background-color: #555;
 }
+
+.input-error {
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+    .input-error::placeholder {
+        color: red;
+        font-weight: bold;
+    }

@@ -1,14 +1,11 @@
-﻿    let bottoneRimuovi = document.getElementById("rimuovi");
-    let container = document.getElementById("risultati-captati");
-
-    bottoneRimuovi.addEventListener("click", function () {
-        let isbn = document.getElementById("Isbn");
-        let quantita = document.getElementById("Quantità");
-
-        if (!controlloCampoIsEmpty("Isbn", "inserisci questo campo")) {
+﻿let bottoneRimuovi = document.getElementById("rimuovi");
+let container = document.getElementById("contenitore");
+bottoneRimuovi.addEventListener("click", function () {
+    let isbn = document.getElementById("Isbn").value;
+    let quantita = document.getElementById("Quantita").value;
+        if (controlloCampoIsEmpty("Isbn", "inserisci questo campo")) {
             return;
         };
-
         if (isbn.length != 13 && isbn.length != 10) {
             mostraErroreInput("Isbn", "ISBN deve essere lungo 10 o 13 caratteri");
             return;
@@ -18,7 +15,6 @@
             mostraErroreInput("Quantita", "La quantità deve essere positiva");
             return;
         }
-
         removeBook(isbn, quantita);
     });
     //Messo in tutti e tre 
@@ -33,7 +29,8 @@
         }
     }
 
-    function mostraErroreInput(id, message) {
+function mostraErroreInput(id, message) {
+
         let field = document.getElementById(id);
         field.classList.add("input-error");
         field.placeholder = message;
@@ -41,7 +38,7 @@
     }
 
     //MEsso in tutti 
-    function rimuoviErroreInput(id) {
+function rimuoviErroreInput(id) {
         let field = document.getElementById(id);
         field.classList.remove("input-error");
         field.placeholder = "";
@@ -53,25 +50,37 @@
 
 
     //Rimuovi libro
-    function removeBook(isbn, quantita) {
-        fetch(`/api/Libro/RemoveBooks?isbn=${isbn}&quantita=${quantita}`, {
-            method: "DELETE"
+function removeBook(isbn, quantita) {
+    fetch(`/api/Libro/RemoveBooks/${encodeURIComponent(isbn)}/${quantita}`, {
+            method: "PATCH"
         })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("Errore durante la rimozione del libro");
+                if (response.status === 200) {
+                    return response.json();
+                } else if (response.status === 204) {
+                    return null;
+                } else {
+                    return response.json().then(errorData => { throw new Error(errorData.error);});
                 }
-                return response.json();
             })
-            .then(data => alert("Libro rimosso con successo!"))
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            })
+        .then(data => {
+            container.innerHTML = "";
+            let paragrafoRimosso = document.createElement("p");
+            paragrafoRimosso.style.color = "green";
+            paragrafoRimosso.textContent = "Hai correttamente eseguito la rimozione del libro";
+            container.appendChild(paragrafoRimosso);
+            })
             .catch(error => mostraMessaggioErrore(error.message));
-    }
+}
 
-    //tutti e tre 
-    
-
-    //tutti e tre
-    function mostraMessaggioErrore(message) {
+function mostraMessaggioErrore(message) {
         container.innerHTML = "";
         let paragrafoErrore = document.createElement("p");
         paragrafoErrore.style.color = "red";

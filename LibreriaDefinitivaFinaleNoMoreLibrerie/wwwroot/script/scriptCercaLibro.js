@@ -1,16 +1,13 @@
 ﻿    let bottoneCerca = document.getElementById("cerca");
     let container = document.getElementById("risultati-captati"); 
-    //cerca libro
     bottoneCerca.addEventListener("click", function () {
         let input = document.getElementById("cerca-input").value;
         if (!input) {
-            //alert("Entrato nella condizione di nullità");
             searchAllBooks();
         } else {
             searchBooksByQuery(input);
         }
     });
-    //Messo in tutti e tre 
     function controlloCampoIsEmpty(id, errorMessage) {
         let field = document.getElementById(id);
         if (field.value.trim() === "") {
@@ -29,15 +26,12 @@
         field.value = "";
     }
 
-    //MEsso in tutti 
     function rimuoviErroreInput(id) {
         let field = document.getElementById(id);
         field.classList.remove("input-error");
         field.placeholder = "";
     }
-    //Cerca libro 
 function searchAllBooks() {
-    //alert("Dentro al metodo");
     fetch("https://localhost:7268/api/Libro/GetAllBooks/GetAllLibri")
         .then(response => {
             if (!response.ok) {
@@ -49,7 +43,6 @@ function searchAllBooks() {
             .catch(error => mostraMessaggioErrore("Errore durante il recupero dei libri: " + error));
     }
 
-    //Cerca libro 
     function searchBooksByQuery(input) {
         fetch(`/api/Libro/SearchBooks/${encodeURIComponent(input)}`)
             .then(response => {
@@ -61,10 +54,8 @@ function searchAllBooks() {
             .then(data => generaRisultati(data))
             .catch(error => mostraMessaggioErrore(error.message));
     }
-    //tutti e tre 
 function generaRisultati(data) {
     libri = data.$values;
-    console.log(libri);  // Questo mostrerà il contenuto della risposta nel console del browser.
     container.innerHTML = "";
 
     if (!Array.isArray(libri)) {
@@ -122,7 +113,6 @@ function generaRisultati(data) {
         }
     }
 
-    //tutti e tre
     function mostraMessaggioErrore(message) {
         container.innerHTML = "";
         let paragrafoErrore = document.createElement("p");

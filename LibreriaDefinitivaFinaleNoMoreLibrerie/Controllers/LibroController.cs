@@ -126,7 +126,7 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
 
 
 
-        [HttpPatch]
+        [HttpPatch("{isbn}/{quantita}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

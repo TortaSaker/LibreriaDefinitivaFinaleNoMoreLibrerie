@@ -4,6 +4,7 @@
     bottoneCerca.addEventListener("click", function () {
         let input = document.getElementById("cerca-input").value;
         if (!input) {
+            //alert("Entrato nella condizione di nullità");
             searchAllBooks();
         } else {
             searchBooksByQuery(input);
@@ -35,9 +36,15 @@
         field.placeholder = "";
     }
     //Cerca libro 
-    function searchAllBooks() {
-        fetch("/api/Libro/GetAllBooks")
-            .then(response => response.json())
+function searchAllBooks() {
+    //alert("Dentro al metodo");
+    fetch("https://localhost:7268/api/Libro/GetAllBooks/GetAllLibri")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Errore durante il recupero dei libri");
+            }
+            return response.json();
+        })
             .then(data => generaRisultati(data))
             .catch(error => mostraMessaggioErrore("Errore durante il recupero dei libri: " + error));
     }
@@ -55,13 +62,19 @@
             .catch(error => mostraMessaggioErrore(error.message));
     }
     //tutti e tre 
-    function generaRisultati(data) {
-        container.innerHTML = "";
+function generaRisultati(data) {
+    libri = data.$values;
+    console.log(libri);  // Questo mostrerà il contenuto della risposta nel console del browser.
+    container.innerHTML = "";
 
-        if (data=== null || data.length === 0) {
+    if (!Array.isArray(libri)) {
+            mostraMessaggioErrore("La risposta non è un array.");
+            return;
+        }
+        if (libri === null || libri.length === 0) {
             mostraMessaggioErrore("Non sono stati trovati libri con queste caratteristiche.");
         } else {
-            data.forEach(libro => {
+            libri.forEach(libro => {
                 let card = document.createElement("div");
                 card.classList.add("card");
 

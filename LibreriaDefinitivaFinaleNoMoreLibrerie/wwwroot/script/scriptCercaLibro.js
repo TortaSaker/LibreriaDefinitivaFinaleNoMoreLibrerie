@@ -90,30 +90,10 @@ function generaRisultati(data) {
                 cardAutore.textContent = libro.autore;
                 cardBody.appendChild(cardAutore);
 
-                let cardIsbn = document.createElement("p");
-                cardIsbn.classList.add("card-text");
-                cardIsbn.textContent = "ISBN: " + libro.isbn;
-                cardBody.appendChild(cardIsbn);
-
-                let cardGenere = document.createElement("p");
-                cardGenere.classList.add("card-text");
-                cardGenere.textContent = "Genere: " + libro.genere;
-                cardBody.appendChild(cardGenere);
-
-                let cardEdizione = document.createElement("p");
-                cardEdizione.classList.add("card-text");
-                cardEdizione.textContent = "Edizione: " + libro.edizione;
-                cardBody.appendChild(cardEdizione);
-
                 let cardPrezzo = document.createElement("p");
                 cardPrezzo.classList.add("card-text");
                 cardPrezzo.textContent = "Prezzo: " + libro.prezzo + " €";
                 cardBody.appendChild(cardPrezzo);
-
-                let cardQuantita = document.createElement("p");
-                cardQuantita.classList.add("card-text");
-                cardQuantita.textContent = "Quantità disponibile: " + libro.quantita;
-                cardBody.appendChild(cardQuantita);
 
                 card.appendChild(cardImg);
                 card.appendChild(cardBody);

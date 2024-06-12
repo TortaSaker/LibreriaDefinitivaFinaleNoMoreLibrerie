@@ -102,7 +102,7 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
                 return BadRequest(new { error = "Il parametro di ricerca non può essere vuoto" });
             }
 
-            string lowerQuery = query.ToLower();
+            string lowerQuery = query.Trim().ToLower();
 
             double parsedPrice;
             bool isNumeric = double.TryParse(query, out parsedPrice);
@@ -111,7 +111,7 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
                             .SelectMany(s => s.ScaffaleDiLibri)
                             .Where(b => b.Titolo.ToLower().Contains(lowerQuery) ||
                                         b.Autore.ToLower().Contains(lowerQuery) ||
-                                        b.Isbn.Contains(query) ||
+                                        b.Isbn.Contains(query.Trim()) ||
                                         b.Genere.ToLower() == lowerQuery ||
                                         (isNumeric && b.Prezzo <= parsedPrice))
                             .ToList();

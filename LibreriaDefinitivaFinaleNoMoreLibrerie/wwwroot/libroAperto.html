@@ -6,53 +6,7 @@
     <title>Dettaglio Libro</title>
     <link rel="stylesheet" href="style/site.css">
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            /*function getQueryParameter(name) {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get(name);
-            }
 
-            const isbn = getQueryParameter('isbn'); */
-
-            const isbn = JSON.parse(localStorage.getItem('selectedBook'));
-            let id = "info";
-            let div = document.createElement('div');
-            div.id = id;
-            let p1 = document.createElement('p');
-            let p3 = document.createElement('p');
-            let p4 = document.createElement('p');
-            let p5 = document.createElement('p');
-            let p6 = document.createElement('p');
-
-            if (isbn != null && isbn !== "") {
-                fetch(/api/LibroAPI/isbn/${isbn})
-                    .then(response => response.json())
-                    .then(data => {
-                        const details = document.getElementById('book-details');
-                        p1.innerHTML = <strong>Author:</strong> ${data.autore};
-                        p6.innerHTML = <strong> Genere:</strong> ${data.genere};
-                        p3.innerHTML = <strong>Description:</strong> ${data.descrizione};
-                        p4.innerHTML = <strong>Numero di Pagine:</strong> ${data.pagine}     <strong>ISBN:</strong> ${data.isbn}       <strong>Prezzo:</strong> ${data.prezzo}€;
-
-
-                        const bookInfo = `
-                                            <h2>${data.titolo}</h2>
-                                            <img src="../${data.url}" alt="${data.titolo}" >
-                                        `;
-                        details.innerHTML = bookInfo;
-                        div.appendChild(p1);
-                        div.appendChild(p3);
-                        div.appendChild(p4);
-                        div.appendChild(p6);
-                        details.appendChild(div);
-                    })
-                    .catch(error => console.error('Error fetching book details:', error));
-            } else {
-                document.getElementById('book-details').innerText = 'Nessun ISBN fornito';
-            }
-        });
-    </script>
     <style>
         /* Style for buttons */
         button {
@@ -88,7 +42,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
-
 </head>
 <body>
     <header>
@@ -107,12 +60,11 @@
     <div id="main-content">
         <div id="book-detail">
             <div id="book-cover">
-                <img src="https://localhost:7268/images/copertine/Anna%20Karenina.jpg" alt="Copertina del Libro">
+
             </div>
             <div id="book-info">
                 <div id="book-title">
-                    <h1>Anna Karenina</h1>
-                    <p>€00.00</p>
+
                     <button id="aggiungi-al-carrello">Aggiungi al Carrello</button>
                 </div>
             </div>
@@ -126,5 +78,27 @@
             <a href="https://localhost:7268/terminiecondizioni.html">Termini e condizioni</a>
         </p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const query = JSON.parse(localStorage.getItem('selectedBook'));
+            let div1 = document.getElementById('book-cover');
+            let div2 = document.getElementById('book-info');
+            let img1 = document.createElement('img');
+            let p1 = document.createElement('p');
+            if (query != null && query !== "") {
+                fetch(`/api/Libro/SearchBooks/${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        div1.innerHTML = `
+                        <img src="${data.titolo}" alt=""/>
+                        `;
+                    })
+                    .catch(error => console.error('Error fetching book details:', error));
+            } else {
+                document.getElementById('book-details').innerText = 'Nessun ISBN fornito';
+            }
+        });
+    </script>
 </body>
 </html>

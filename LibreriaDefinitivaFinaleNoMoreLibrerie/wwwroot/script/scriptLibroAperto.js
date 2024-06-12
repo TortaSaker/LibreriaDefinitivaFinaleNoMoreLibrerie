@@ -15,10 +15,10 @@
 
                 l.addEventListener('click', function (e) {
                     e.preventDefault();
-                    localStorage.setItem('selectedBook', JSON.stringify(b.isbn));
+                    localStorage.setItem('selectedBook', JSON.stringify(b.titolo));
                     window.location.href = l.href;
                 });
             });
         })
         .catch(error => console.error('Error fetching data:', error));
-});
+});*/

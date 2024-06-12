@@ -40,8 +40,9 @@ function searchAllBooks() {
             return response.json();
         })
             .then(data => generaRisultati(data))
-            .catch(error => mostraMessaggioErrore("Errore durante il recupero dei libri: " + error));
-    }
+        .catch(error => mostraMessaggioErrore("Errore durante il recupero dei libri: " + error));
+
+}
 
     function searchBooksByQuery(input) {
         fetch(`/api/Libro/SearchBooks/${encodeURIComponent(input)}`)
@@ -72,6 +73,8 @@ function generaRisultati(data) {
                 let cardBody = document.createElement("div");
                 cardBody.classList.add("card-body");
 
+                let link = document.createElement('a');
+                link.href = "libroAperto.html?isbn=" + libro.isbn;
                 let cardImg = document.createElement("img");
                 cardImg.classList.add("card-img-top");
                 cardImg.setAttribute("src", "../images/copertine/" + libro.titolo + ".jpg");
@@ -79,6 +82,7 @@ function generaRisultati(data) {
                 cardImg.onerror = function () {
                     this.src = "../images/icon.jpg";
                 };
+                link.appendChild(cardImg);
 
                 let cardTitolo = document.createElement("h5");
                 cardTitolo.classList.add("card-title");
@@ -115,9 +119,15 @@ function generaRisultati(data) {
                 cardQuantita.textContent = "Quantità disponibile: " + libro.quantita;
                 cardBody.appendChild(cardQuantita);
 
-                card.appendChild(cardImg);
+                card.appendChild(link);
                 card.appendChild(cardBody);
                 container.appendChild(card);
+
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.setItem('selectedBook', JSON.stringify(libro.isbn));
+                    window.location.href = link.href;
+                });
             });
         }
     }

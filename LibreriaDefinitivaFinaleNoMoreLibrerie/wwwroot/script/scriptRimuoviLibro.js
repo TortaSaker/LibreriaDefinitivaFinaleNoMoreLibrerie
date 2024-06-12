@@ -11,7 +11,7 @@ bottoneRimuovi.addEventListener("click", function () {
             return;
         }
 
-        if (quantita < 0) {
+        if (quantita <= 0) {
             mostraErroreInput("Quantita", "La quantità deve essere positiva");
             return;
         }
@@ -61,13 +61,6 @@ function removeBook(isbn, quantita) {
                     return null;
                 } else {
                     return response.json().then(errorData => { throw new Error(errorData.error);});
-                }
-            })
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                } else {
-                    return null;
                 }
             })
         .then(data => {

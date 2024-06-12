@@ -117,6 +117,7 @@ footer {
     border-bottom: 0;
     border-top: 5px;
     position: static;
+    margin-top: auto; /* Spinge il footer in fondo alla pagina */
 }
 
     footer a {
@@ -239,3 +240,47 @@ input[type="text"]:focus, select:focus {
     #add-to-cart:hover {
         background-color: #555;
     }
+#card{
+    display:block;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    .card {
+        width: 300px;
+        margin: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .card h3 {
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .card p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .card button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+            .card button:hover {
+                background-color: #555;
+}

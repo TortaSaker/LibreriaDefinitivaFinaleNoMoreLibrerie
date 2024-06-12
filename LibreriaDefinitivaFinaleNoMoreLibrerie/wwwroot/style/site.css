@@ -240,52 +240,59 @@ input[type="text"]:focus, select:focus {
     #add-to-cart:hover {
         background-color: #555;
     }
-#card{
-    display:block;
+#card-container, #risultati-captati {
+    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /*justify-content: center;*/
     margin-top: 20px;
 }
 
-    .card {
-        width: 300px;
-        margin: 10px;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        flex-grow:1;
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 360px; /* Dimensione fissa per la card */
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 0;
+    flex-shrink: 0;
+}
 
+    .card img.book-image {
+        max-width: 150px;
+        margin-right: 20px;
     }
 
-        .card img {
-            width: 100%;
-            border-radius: 5px;
-        }
+    .card .book-details {
+        flex-grow: 1;
+    }
 
-        .card h3 {
-            color: #333;
-            margin-top: 10px;
-        }
+    .card h3 {
+        color: #333;
+        margin-top: 0;
+    }
 
-        .card p {
-            color: #666;
-            margin-top: 10px;
-        }
+    .card p {
+        color: #666;
+        margin-top: 10px;
+    }
 
-        .card button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+    .card button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
 
-            .card button:hover {
-                background-color: #555;
-}
+        .card button:hover {
+            background-color: #555;
+        }
 
 .input-error {
     border: 2px solid red;

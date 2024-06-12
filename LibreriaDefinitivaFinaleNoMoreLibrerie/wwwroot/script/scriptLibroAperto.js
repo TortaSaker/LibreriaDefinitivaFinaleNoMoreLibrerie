@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿/*document.addEventListener('DOMContentLoaded', function () {
     let t = document.getElementById('titolo');
     fetch('/api/LibroAPI')
         .then(response => response.json())

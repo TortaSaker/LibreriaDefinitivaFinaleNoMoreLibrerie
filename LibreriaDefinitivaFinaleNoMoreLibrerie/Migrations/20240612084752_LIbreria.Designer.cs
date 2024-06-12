@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240610080527_LibreriaDefinitiva")]
-    partial class LibreriaDefinitiva
+    [Migration("20240612084752_LIbreria")]
+    partial class LIbreria
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

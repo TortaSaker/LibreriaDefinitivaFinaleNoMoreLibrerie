@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\script\scriptCarrello.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\script\scriptCarrello.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\aggiungiLibro.html.__projection.g.js" />
     <None Include="wwwroot\cercaLibro.html.__projection.g.js" />
     <None Include="wwwroot\contatti.html.__projection.g.js" />
@@ -14,6 +22,7 @@
     <None Include="wwwroot\privacy.html.__projection.g.js" />
     <None Include="wwwroot\rimuoviLibro.html.__projection.g.js" />
     <None Include="wwwroot\script\owl.carousel.min.js" />
+    <None Include="wwwroot\script\scriptCarrello.js" />
     <None Include="wwwroot\terminiecondizioni.html.__projection.g.js" />
   </ItemGroup>
 

@@ -295,11 +295,11 @@ input[type="text"]:focus, select:focus {
         }
 
 .input-error {
-    border: 2px solid red;
-    background-color: rgba(255, 0, 0, 0.1);
+    border: 2px solid red !important; /* Bordi rossi */
+    background-color: rgba(255, 0, 0, 0.1) !important; /* Sfondo rosso chiaro */
 }
 
     .input-error::placeholder {
-        color: red;
-        font-weight: bold;
+        color: red !important; /* Colore rosso per il placeholder */
+        font-weight: bold; /* Testo in grassetto */
     }

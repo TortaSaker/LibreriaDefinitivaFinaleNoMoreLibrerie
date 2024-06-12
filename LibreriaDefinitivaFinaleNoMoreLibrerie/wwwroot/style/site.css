@@ -1,7 +1,7 @@
 ﻿/* Base styles */
 body {
     background-image: url("../images/bg.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: cover; /* Copre l'intero schermo con l'immagine di sfondo */
     font-family: Arial, sans-serif;
     margin: 0;
@@ -254,6 +254,8 @@ input[type="text"]:focus, select:focus {
         background-color: #fff;
         border-radius: 5px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        flex-grow:1;
+
     }
 
         .card img {

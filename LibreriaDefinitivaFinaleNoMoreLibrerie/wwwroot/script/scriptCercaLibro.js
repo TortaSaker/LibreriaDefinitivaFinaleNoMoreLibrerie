@@ -72,6 +72,14 @@ function generaRisultati(data) {
                 let cardBody = document.createElement("div");
                 cardBody.classList.add("card-body");
 
+                let cardImg = document.createElement("img");
+                cardImg.classList.add("card-img-top");
+                cardImg.setAttribute("src", "../images/copertine/" + libro.titolo + ".jpg");
+                cardImg.setAttribute("alt", libro.titolo);
+                cardImg.onerror = function () {
+                    this.src = "../images/icon.jpg";
+                };
+
                 let cardTitolo = document.createElement("h5");
                 cardTitolo.classList.add("card-title");
                 cardTitolo.textContent = libro.titolo;
@@ -107,6 +115,7 @@ function generaRisultati(data) {
                 cardQuantita.textContent = "Quantità disponibile: " + libro.quantita;
                 cardBody.appendChild(cardQuantita);
 
+                card.appendChild(cardImg);
                 card.appendChild(cardBody);
                 container.appendChild(card);
             });

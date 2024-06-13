@@ -114,10 +114,11 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
-    border-bottom: 0;
     border-top: 5px;
-    position: static;
-    margin-top: auto; /* Spinge il footer in fondo alla pagina */
+    position: relative;
+    bottom: 0; /* Posiziona il footer in fondo alla pagina */
+    width: 100%; /* Assicura che il footer occupi tutta la larghezza della pagina */
+    clear: both; /* Evita che il footer si sovrapponga al contenuto */
 }
 
     footer a {
@@ -182,11 +183,11 @@ input[type="text"], select {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-input[type="text"]:focus, select:focus {
-    border-color: #555;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-}
+    input[type="text"]:focus, select:focus {
+        border-color: #555;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
 
 #book-detail {
     display: flex;
@@ -240,6 +241,7 @@ input[type="text"]:focus, select:focus {
     #add-to-cart:hover {
         background-color: #555;
     }
+
 #card-container, #risultati-captati {
     display: flex;
     flex-wrap: wrap;

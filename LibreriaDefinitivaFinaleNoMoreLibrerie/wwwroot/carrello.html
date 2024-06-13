@@ -99,21 +99,27 @@
             const carrello = JSON.parse(localStorage.getItem('carrello')) || [];
             const tableBody = document.querySelector('#carrello tbody');
             let contenitoreParagrafo = document.getElementById("contenitore-paragrafo");
+
+            // Popola la tabella del carrello
             carrello.forEach(libro => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                <td><img src="/images/copertine/${libro.titolo}.jpg" alt="" width="50px"></td>
-                <td>${libro.titolo}</td>
-                <td>€${libro.prezzo}</td>
-                <td>€${libro.prezzo}</td>
-              `;
+                    <td><img src="/images/copertine/${libro.titolo}.jpg" alt="" width="50px"></td>
+                    <td>${libro.titolo}</td>
+                    <td>€${libro.prezzo}</td>
+                    <td>€${libro.prezzo}</td>
+                `;
                 tableBody.appendChild(row);
             });
+
+            // Calcola e mostra il totale del carrello
             const totaleCarrello = carrello.reduce((acc, libro) => acc + libro.prezzo, 0);
             document.querySelector('#totale-carrello h3').innerText = `Totale: €${totaleCarrello.toFixed(2)}`;
 
+            // Gestisci il click del pulsante "Procedi all'acquisto"
             const procediAllAcquistoButton = document.querySelector('#totale-carrello button');
             procediAllAcquistoButton.addEventListener('click', function () {
+                // Rimuove i libri dal carrello attraverso una chiamata API
                 carrello.forEach(libro => {
                     fetch(`/api/Libro/RemoveBooks/${libro.isbn}/${libro.quantita}`, {
                         method: 'PATCH'
@@ -122,14 +128,20 @@
                         .then(data => console.log(data))
                         .catch(error => console.error('Error:', error));
                 });
-                localStorage.removeItem('carrello');
+
                 let paragrafoRingraziementi = document.createElement("p");
                 paragrafoRingraziementi.style.color = "green";
                 paragrafoRingraziementi.textContent = "Grazie per l'acquisto!";
                 contenitoreParagrafo.appendChild(paragrafoRingraziementi);
-                window.location.href = 'carrello.html';
+
+                localStorage.removeItem('carrello');
+
+                setTimeout(() => {
+                    window.location.href = 'carrello.html';
+                }, 5000); 
             });
         });
     </script>
+
 </body>
 </html>

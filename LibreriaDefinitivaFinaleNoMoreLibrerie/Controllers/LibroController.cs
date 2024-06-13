@@ -107,6 +107,11 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
             double parsedPrice;
             bool isNumeric = double.TryParse(query, out parsedPrice);
 
+            if (parsedPrice < 0 || parsedPrice >= 100)
+            {
+                return BadRequest(new { error = "Nessun libro ha questo prezzo o ISBN" });
+            }
+
             var books = _db.Scaffali
                             .SelectMany(s => s.ScaffaleDiLibri)
                             .Where(b => b.Titolo.ToLower().Replace(" ", "").Contains(lowerQuery.Replace(" ", "")) ||

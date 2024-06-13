@@ -81,7 +81,7 @@
             <h3 id="totale"></h3>
             <button id="totale-carrello button" style="background-color: #4CAF50">Procedi all'acquisto</button>
         </div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <div id="contenitore-paragrafo"></div>
     </div>
 
     <footer>
@@ -97,14 +97,15 @@
         document.addEventListener('DOMContentLoaded', function () {
             const carrello = JSON.parse(localStorage.getItem('carrello')) || [];
             const tableBody = document.querySelector('#carrello tbody');
+            let contenitoreParagrafo = document.getElementById("contenitore-paragrafo");
             carrello.forEach(libro => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-            <td><img src="/images/copertine/${libro.titolo}.jpg" alt="" width="50px"></td>
-            <td>${libro.titolo}</td>
-            <td>€${libro.prezzo}</td>
-            <td>€${libro.prezzo}</td>
-          `;
+                <td><img src="/images/copertine/${libro.titolo}.jpg" alt="" width="50px"></td>
+                <td>${libro.titolo}</td>
+                <td>€${libro.prezzo}</td>
+                <td>€${libro.prezzo}</td>
+              `;
                 tableBody.appendChild(row);
             });
             const totaleCarrello = carrello.reduce((acc, libro) => acc + libro.prezzo, 0);
@@ -120,8 +121,12 @@
                         .then(data => console.log(data))
                         .catch(error => console.error('Error:', error));
                 });
+                let paragrafoRingraziementi = document.createElement("p");
+                paragrafoRingraziementi.style.color = "green";
+                paragrafoRingraziementi.textContent = "Grazie per l'acquisto!";
+                contenitoreParagrafo.appendChild(paragrafoRingraziementi);
                 localStorage.removeItem('carrello');
-                window.location.href = 'index.html';
+                window.location.href = 'carrello.html';
             });
         });
     </script>

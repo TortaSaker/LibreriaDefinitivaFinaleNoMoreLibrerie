@@ -88,10 +88,10 @@
             if (query != null && query !== "") {
                 fetch(`/api/Libro/SearchBooks/${query}`)
                     .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
+                    .then(da => {
+                        console.log(da);
                         div1.innerHTML = `
-                        <img src="${data.titolo}" alt=""/>
+                        <img src="/images/copertine/${da.titolo}.jpg" alt=""/>
                         `;
                     })
                     .catch(error => console.error('Error fetching book details:', error));

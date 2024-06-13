@@ -82,6 +82,7 @@
             <button id="totale-carrello button" style="background-color: #4CAF50">Procedi all'acquisto</button>
         </div>
         <div id="contenitore-paragrafo"></div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
 
     <footer>
@@ -121,11 +122,11 @@
                         .then(data => console.log(data))
                         .catch(error => console.error('Error:', error));
                 });
+                localStorage.removeItem('carrello');
                 let paragrafoRingraziementi = document.createElement("p");
                 paragrafoRingraziementi.style.color = "green";
                 paragrafoRingraziementi.textContent = "Grazie per l'acquisto!";
                 contenitoreParagrafo.appendChild(paragrafoRingraziementi);
-                localStorage.removeItem('carrello');
                 window.location.href = 'carrello.html';
             });
         });

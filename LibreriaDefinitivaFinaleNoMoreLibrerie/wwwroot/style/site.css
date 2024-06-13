@@ -2,7 +2,7 @@
 body {
     background-image: url("../images/bg.jpg");
     background-repeat: repeat;
-    background-size: cover; /* Copre l'intero schermo con l'immagine di sfondo */
+    background-size: cover; 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -19,9 +19,9 @@ nav {
 }
 
     nav #logo {
-        height: 30px; /* Imposta l'altezza desiderata */
-        width: auto; /* Lascia che la larghezza si adatti proporzionalmente */
-        margin-right: 20px; /* Aggiungi margine destro per separare l'immagine dagli altri link */
+        height: 30px; 
+        width: auto; 
+        margin-right: 20px; 
     }
 
     nav a {
@@ -114,11 +114,8 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
-    border-top: 5px;
-    position: relative;
-    bottom: 0; /* Posiziona il footer in fondo alla pagina */
-    width: 100%; /* Assicura che il footer occupi tutta la larghezza della pagina */
-    clear: both; /* Evita che il footer si sovrapponga al contenuto */
+    width: 100%;
+    margin-top: auto; 
 }
 
     footer a {
@@ -253,7 +250,7 @@ input[type="text"], select {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    width: 360px; /* Dimensione fissa per la card */
+    width: 360px; 
     margin: 10px;
     padding: 20px;
     background-color: #fff;
@@ -302,6 +299,6 @@ input[type="text"], select {
 }
 
     .input-error::placeholder {
-        color: red !important; /* Colore rosso per il placeholder */
-        font-weight: bold; /* Testo in grassetto */
+        color: red !important; 
+        font-weight: bold; 
     }

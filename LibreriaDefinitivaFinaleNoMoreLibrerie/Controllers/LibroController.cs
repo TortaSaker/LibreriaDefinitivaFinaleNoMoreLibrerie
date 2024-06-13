@@ -111,10 +111,16 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
                             .SelectMany(s => s.ScaffaleDiLibri)
                             .Where(b => b.Titolo.ToLower().Replace(" ", "").Contains(lowerQuery.Replace(" ", "")) ||
                                         b.Autore.ToLower().Replace(" ", "").Contains(lowerQuery.Replace(" ", "")) ||
-                                        b.Isbn.Contains(query.Trim().Replace("-", "")) ||
-                                        b.Genere.Replace(" ", "").ToLower() == lowerQuery.Replace(" ", "") ||
-                                        (isNumeric && b.Prezzo <= parsedPrice))
+                                        b.Isbn == query.Trim().Replace("-", "") ||
+                                        b.Genere.Replace(" ", "").ToLower() == lowerQuery.Replace(" ", ""))
                             .ToList();
+            if (!books.Any())
+            {
+                books = _db.Scaffali
+                            .SelectMany(s => s.ScaffaleDiLibri)
+                            .Where(b => isNumeric && b.Prezzo <= parsedPrice)
+                            .ToList();
+            }
 
             if (!books.Any())
             {

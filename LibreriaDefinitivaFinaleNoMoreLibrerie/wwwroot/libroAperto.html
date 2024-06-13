@@ -120,20 +120,29 @@
             div2.appendChild(p6);
             div2.appendChild(bottone);
         });
-    </script>
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const aggiungiAlCarrelloButton = document.getElementById('aggiungi-al-carrello');
             aggiungiAlCarrelloButton.addEventListener('click', function () {
-                const query = JSON.parse(localStorage.getItem('selectedBook'));
-                if (query != null && query !== "") {
+                const titolo = JSON.parse(localStorage.getItem('titolo'));
+                const isbn = JSON.parse(localStorage.getItem('isbn'));
+                const genere = JSON.parse(localStorage.getItem('genere'));
+                const prezzo = JSON.parse(localStorage.getItem('prezzo'));
+                const edizione = JSON.parse(localStorage.getItem('edizione'));
+                const quantita = JSON.parse(localStorage.getItem('quantita'));
+                const autore = JSON.parse(localStorage.getItem('autore'));
+                if (isbn != null && isbn !== "") {
                     const libro = {
-                        isbn: query,
-                        quantita: 1
+                        titolo: titolo, 
+                        genere: genere,
+                        prezzo: prezzo,
+                        edizione: edizione,
+                        quantita: quantita,
+                        autore: autore
                     };
                     const carrello = JSON.parse(localStorage.getItem('carrello')) || [];
                     carrello.push(libro);
                     localStorage.setItem('carrello', JSON.stringify(carrello));
+
                     window.location.href = 'carrello.html';
                 }
             });

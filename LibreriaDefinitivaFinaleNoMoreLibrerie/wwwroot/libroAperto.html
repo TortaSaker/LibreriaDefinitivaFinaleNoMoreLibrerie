@@ -65,7 +65,6 @@
             <div id="book-info">
                 <div id="book-title">
 
-                    <button id="aggiungi-al-carrello">Aggiungi al Carrello</button>
                 </div>
             </div>
         </div>
@@ -80,24 +79,46 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const query = JSON.parse(localStorage.getItem('selectedBook'));
+            const titolo = JSON.parse(localStorage.getItem('titolo'));
+            const isbn = JSON.parse(localStorage.getItem('isbn'));
+            const genere = JSON.parse(localStorage.getItem('genere'));
+            const prezzo = JSON.parse(localStorage.getItem('prezzo'));
+            const edizione = JSON.parse(localStorage.getItem('edizione'));
+            const quantita = JSON.parse(localStorage.getItem('quantita'));
+            const autore = JSON.parse(localStorage.getItem('autore'));
+
             let div1 = document.getElementById('book-cover');
             let div2 = document.getElementById('book-info');
             let img1 = document.createElement('img');
+
+            let h1 = document.createElement('h1');
             let p1 = document.createElement('p');
-            if (query != null && query !== "") {
-                fetch(`/api/Libro/SearchBooks/${query}`)
-                    .then(response => response.json())
-                    .then(da => {
-                        console.log(da);
-                        div1.innerHTML = `
-                        <img src="/images/copertine/${da.titolo}.jpg" alt=""/>
-                        `;
-                    })
-                    .catch(error => console.error('Error fetching book details:', error));
-            } else {
-                document.getElementById('book-details').innerText = 'Nessun ISBN fornito';
-            }
+            let p2 = document.createElement('p');
+            let p3 = document.createElement('p');
+            let p4 = document.createElement('p');
+            let p5 = document.createElement('p');
+            let p6 = document.createElement('p');
+            let bottone = document.createElement('button');
+
+            img1.src = "/images/copertine/" + titolo + ".jpg";
+            div1.appendChild(img1);
+            h1.innerHTML = titolo;
+            p1.innerHTML = "<strong> Autore: </strong>" + autore;
+            p2.innerHTML = "<strong> ISBN: </strong>" + isbn;
+            p3.innerHTML = "<strong> Prezzo: </strong>" + prezzo + "€";
+            p4.innerHTML = "<strong> Genere: </strong>" + genere;
+            p5.innerHTML = "<strong> Edizione: </strong> " + edizione;
+            p6.innerHTML = "<strong> Quantità: </strong> " + quantita;
+            bottone.innerHTML = "Aggiungi al carrello";
+            bottone.id = "aggiungi-al-carrello";
+            div2.appendChild(h1);
+            div2.appendChild(p1);
+            div2.appendChild(p2);
+            div2.appendChild(p3);
+            div2.appendChild(p4);
+            div2.appendChild(p5);
+            div2.appendChild(p6);
+            div2.appendChild(bottone);
         });
     </script>
 </body>

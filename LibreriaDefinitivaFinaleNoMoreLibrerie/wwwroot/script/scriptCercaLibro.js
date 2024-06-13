@@ -74,7 +74,7 @@ function generaRisultati(data) {
                 cardBody.classList.add("card-body");
 
                 let link = document.createElement('a');
-                link.href = "libroAperto.html?titolo=" + libro.titolo;
+                link.href = "libroAperto.html?isbn=" + libro.isbn;
                 let cardImg = document.createElement("img");
                 cardImg.classList.add("card-img-top");
                 cardImg.setAttribute("src", "../images/copertine/" + libro.titolo + ".jpg");
@@ -105,7 +105,14 @@ function generaRisultati(data) {
 
                 link.addEventListener('click', function (e) {
                     e.preventDefault();
-                    localStorage.setItem('selectedBook', JSON.stringify(libro.titolo));
+                    localStorage.setItem('isbn', JSON.stringify(libro.isbn));
+                    localStorage.setItem('titolo', JSON.stringify(libro.titolo));
+                    localStorage.setItem('prezzo', JSON.stringify(libro.prezzo));
+                    localStorage.setItem('genere', JSON.stringify(libro.genere));
+                    localStorage.setItem('trama', JSON.stringify(libro.trama));
+                    localStorage.setItem('edizione', JSON.stringify(libro.edizione));
+                    localStorage.setItem('quantita', JSON.stringify(libro.quantita));
+                    localStorage.setItem('autore', JSON.stringify(libro.autore));
                     window.location.href = link.href;
                 });
             });

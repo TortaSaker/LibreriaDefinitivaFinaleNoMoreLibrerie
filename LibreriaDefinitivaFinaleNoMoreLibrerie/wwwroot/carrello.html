@@ -65,7 +65,6 @@
                         <th>Copertina</th>
                         <th>Libro</th>
                         <th>Prezzo</th>
-                        <th>Quantità</th>
                         <th>Totale</th>
                     </tr>
                 </thead>
@@ -89,29 +88,17 @@
         document.addEventListener('DOMContentLoaded', function () {
             const carrello = JSON.parse(localStorage.getItem('carrello')) || [];
             const tableBody = document.querySelector('#carrello tbody');
-            let totaleCarrello = 0;
             carrello.forEach(libro => {
                 const row = document.createElement('tr');
-                const inputQuantita = document.createElement('input');
-                inputQuantita.type = 'number';
-                inputQuantita.value = libro.quantita;
-                inputQuantita.min = 1;
-                inputQuantita.max = 20;
-                inputQuantita.step = 1;
-                inputQuantita.addEventListener('input', function () {
-                    libro.quantita = parseInt(inputQuantita.value);
-                    updateTotale(libro);
-                });
                 row.innerHTML = `
-                <td><img src="/images/copertine/${libro.isbn}.jpg" alt="" width="50px"></td>
-                <td>${libro.isbn}</td>
-                <td>€${libro.prezzo}</td>
-                <td>${inputQuantita.outerHTML}</td>
-                <td id="totale-libro">€${(parseFloat(libro.prezzo) * parseFloat(libro.quantita)).toFixed(2)}</td>
-              `;
+            <td><img src="/images/copertine/${libro.isbn}.jpg" alt="" width="50px"></td>
+            <td>${libro.isbn}</td>
+            <td>€${libro.prezzo}</td>
+            <td>€${libro.prezzo}</td>
+          `;
                 tableBody.appendChild(row);
-                totaleCarrello += libro.prezzo * libro.quantita;
             });
+            const totaleCarrello = carrello.reduce((acc, libro) => acc + libro.prezzo, 0);
             document.querySelector('#totale-carrello h3').innerText = `Totale: €${totaleCarrello.toFixed(2)}`;
 
             const procediAllAcquistoButton = document.querySelector('#totale-carrello button');
@@ -128,17 +115,6 @@
                 window.location.href = 'index.html';
             });
         });
-
-        function updateTotale(libro) {
-            const totaleLibroElement = document.querySelector(`#totale-libro`);
-            totaleLibroElement.innerText = `€${(libro.prezzo * libro.quantita).toFixed(2)}`;
-            const totaleCarrelloElement = document.querySelector('#totale-carrello h3');
-            let totaleCarrello = 0;
-            carrello.forEach(libro => {
-                totaleCarrello += libro.prezzo * libro.quantita;
-            });
-            totaleCarrelloElement.innerText = `Totale: €${totaleCarrello.toFixed(2)}`;
-        }
     </script>
 </body>
 </html>

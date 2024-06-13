@@ -1,24 +1,37 @@
 ﻿/*document.addEventListener('DOMContentLoaded', function () {
-    let t = document.getElementById('titolo');
-    fetch('/api/LibroAPI')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(b => {
-                let l = document.createElement('a');
-                l.href = `pages/libroApero.html?isbn=${b.isbn}`;  // Pass ISBN via query string
-                let m = document.createElement('img');
-                m.src = `${b.url}`;
-                m.id = "g";
-                m.alt = `${b.url}`;
-                l.appendChild(m);
-                t.appendChild(l);
+    const query = JSON.parse(localStorage.getItem('selectedBook'));
+    let div1 = document.getElementById('book-cover');
+    let div2 = document.getElementById('book-info');
+    let img1 = document.createElement('img');
+    let p1 = document.createElement('p');
 
-                l.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.setItem('selectedBook', JSON.stringify(b.titolo));
-                    window.location.href = l.href;
+    if (query != null && query !== "") {
+        fetch(`/api/Libro/SearchBooks/${query}`)
+            .then(response => response.json())
+            .then(da => {
+                console.log(da);
+                div1.innerHTML = `
+                <img src="/images/copertine/${da.titolo}.jpg" alt=""/>
+                `;
+                div2.innerHTML = `
+                <h1>${da.titolo}</h1>
+                <p>Autore: ${da.autore}</p>
+                <p>Prezzo: €${da.prezzo}</p>
+                `;
+                document.getElementById('aggiungi-al-carrello').addEventListener('click', function () {
+                    addToCart(da);
                 });
-            });
-        })
-        .catch(error => console.error('Error fetching data:', error));
-});*/
+            })
+            .catch(error => console.error('Error fetching book details:', error));
+    } else {
+        document.getElementById('book-detail').innerText = 'Nessun ISBN fornito';
+    }
+});
+
+function addToCart(book) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(book);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    window.location.href = 'carrello.html';
+}
+*/

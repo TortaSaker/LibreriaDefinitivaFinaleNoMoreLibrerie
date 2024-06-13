@@ -91,13 +91,31 @@
                     .then(da => {
                         console.log(da);
                         div1.innerHTML = `
-                        <img src="/images/copertine/${da.titolo}.jpg" alt=""/>
-                        `;
+                            <img src="/images/copertine/${da.titolo}.jpg" alt=""/>
+                            `;
                     })
                     .catch(error => console.error('Error fetching book details:', error));
             } else {
                 document.getElementById('book-details').innerText = 'Nessun ISBN fornito';
             }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const aggiungiAlCarrelloButton = document.getElementById('aggiungi-al-carrello');
+            aggiungiAlCarrelloButton.addEventListener('click', function () {
+                const query = JSON.parse(localStorage.getItem('selectedBook'));
+                if (query != null && query !== "") {
+                    const libro = {
+                        isbn: query,
+                        quantita: 1
+                    };
+                    const carrello = JSON.parse(localStorage.getItem('carrello')) || [];
+                    carrello.push(libro);
+                    localStorage.setItem('carrello', JSON.stringify(carrello));
+                    window.location.href = 'carrello.html';
+                }
+            });
         });
     </script>
 </body>

@@ -1,92 +1,94 @@
 ﻿<!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="https://localhost:7268/images/icon.png">
-    <title>Rimuovi un libro</title>
-    <link rel="stylesheet" href="style/site.css">
-    <script src="script/scriptRimuoviLibro.js" defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="https://localhost:7268/images/icon.png">
+	<title>Rimuovi un libro</title>
+	<link rel="stylesheet" href="style/site.css">
+	<script src="script/scriptRimuoviLibro.js" defer></script>
 
-    <style>
-        .owl-carousel {
-            display: flex;
-            justify-content: center;
-        }
+	<style>
+		.owl-carousel {
+			display: flex;
+			justify-content: center;
+		}
 
-        .owl-carousel .item {
-            margin: 10px;
-        }
+		.owl-carousel .item {
+			margin: 10px;
+		}
 
-            .owl-carousel .item img {
-                width: 200px;
-                heigh
-            }
-        /* Style for buttons */
-        button {
-            width: 100%;
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
+			.owl-carousel .item img {
+				width: 200px;
+				heigh
+			}
+		/* Style for buttons */
+		button {
+			width: 100%;
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+			transition: background-color 0.3s, transform 0.3s;
+		}
 
-            button:hover {
-                background-color: #45a049;
-                transform: scale(1.02);
-            }
+			button:hover {
+				background-color: #45a049;
+				transform: scale(1.02);
+			}
 
-            button:active {
-                background-color: #3e8e41;
-                transform: scale(0.98);
-            }
+			button:active {
+				background-color: #3e8e41;
+				transform: scale(0.98);
+			}
 
-        /* Additional styling for better visual presentation */
-        form {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+		/* Additional styling for better visual presentation */
+		form {
+			max-width: 600px;
+			margin: auto;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 8px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+	</style>
 </head>
 <body style="background-color: #d0d0d0">
-    <header>
-        <nav>
-            <div>
-                <img id="logo" src="https://localhost:7268/images/logoNav.png" alt="Logo Libreria">
-                <a href="https://localhost:7268/index.html">Home</a>
-                <a href="https://localhost:7268/aggiungiLibro.html">Aggiungi libro</a>
-                <a href="https://localhost:7268/rimuoviLibro.html">Rimuovi Libro</a>
-                <a href="https://localhost:7268/cercaLibro.html">Catalogo</a>
-                <a href="https://localhost:7268/carrello.html">Carrello</a>
-            </div>
-        </nav>
-    </header>
-    <div id="main-content">
-        <h2>Rimuovi un libro</h2>
-        <label>ISBN:</label><br>
-        <input type="text" id="Isbn" name="isbn"><br><br>
-        <label>Quantita:</label><br>
-        <input type="number" id="Quantita" name="quantita"><br><br>
-        <button id="rimuovi" type="submit">Rimuovi</button>
-        <div id="contenitore"></div>
-    </div>
-    <footer>
-        <p>&copy; 2024 Top of the Pops. Tutti i diritti riservati.</p>
-        <p>
-            <a href="https://localhost:
-               /contatti.html">Contatti</a> |
-            <a href="https://localhost:7268/privacy.html">Privacy</a> |
-            <a href="https://localhost:7268/terminiecondizioni.html">Termini e condizioni</a>
-        </p>
-    </footer>
+	<header>
+		<nav>
+			<div>
+				<img id="logo" src="https://localhost:7268/images/logoNav.png" alt="Logo Libreria">
+				<a href="https://localhost:7268/index.html">Home</a>
+				<a href="https://localhost:7268/aggiungiLibro.html">Aggiungi libro</a>
+				<a href="https://localhost:7268/rimuoviLibro.html">Rimuovi Libro</a>
+				<a href="https://localhost:7268/cercaLibro.html">Catalogo</a>
+				<a href="https://localhost:7268/carrello.html">Carrello</a>
+			</div>
+		</nav>
+	</header>
+	<div id="main-content">
+		<h2>Rimuovi un libro</h2><br />
+		<label>ISBN:</label><br>
+		<input type="text" id="Isbn" name="isbn"><br><br>
+		<label>Quantita:</label><br>
+		<input type="number" id="Quantita" name="quantita"><br /><br /><br />
+		<button id="rimuovi" type="submit">Rimuovi</button>
+		<br /><br /><br />
+		<div id="contenitore"></div>
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	</div>
+	<footer>
+		<p>&copy; 2024 Top of the Pops. Tutti i diritti riservati.</p>
+		<p>
+			<a href="https://localhost:
+			   /contatti.html">Contatti</a> |
+			<a href="https://localhost:7268/privacy.html">Privacy</a> |
+			<a href="https://localhost:7268/terminiecondizioni.html">Termini e condizioni</a>
+		</p>
+	</footer>
 </body>
 </html>

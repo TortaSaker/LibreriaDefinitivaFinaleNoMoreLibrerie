@@ -27,8 +27,8 @@
             return;
         }
 
-        if (prezzo < 0) {
-            mostraErroreInput("Prezzo", "Il prezzo deve essere positivo");
+        if (prezzo < 0 || prezzo >= 100) {
+            mostraErroreInput("Prezzo", "Il prezzo deve essere compreso tra 0 e 100 Euro");
             return;
         }
 

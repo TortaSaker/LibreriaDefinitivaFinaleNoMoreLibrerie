@@ -39,7 +39,7 @@ function searchAllBooks() {
             }
             return response.json();
         })
-            .then(data => generaRisultati(data))
+        .then(data => generaRisultati(data))
         .catch(error => mostraMessaggioErrore("Errore durante il recupero dei libri: " + error));
 
 }
@@ -48,7 +48,7 @@ function searchAllBooks() {
         fetch(`/api/Libro/SearchBooks/${encodeURIComponent(input)}`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Errore durante la ricerca dei libri");
+                    return response.json().then(errorData => { throw new Error(errorData.error); });
                 }
                 return response.json();
             })

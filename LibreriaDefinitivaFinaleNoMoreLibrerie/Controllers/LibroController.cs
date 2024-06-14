@@ -135,8 +135,6 @@ namespace LibreriaDefinitivaFinaleNoMoreLibrerie.Controllers
             return Ok(books);
         }
 
-
-
         [HttpPatch("{isbn}/{quantita}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

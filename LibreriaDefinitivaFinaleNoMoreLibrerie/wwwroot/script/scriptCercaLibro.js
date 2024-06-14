@@ -93,16 +93,21 @@ function generaRisultati(data) {
             let cardBody = document.createElement("div");
             cardBody.classList.add("card-body");
 
-            let link = document.createElement('a');
-            link.href = "libroAperto.html?isbn=" + libro.isbn;
-            let cardImg = document.createElement("img");
-            cardImg.classList.add("card-img-top");
-            cardImg.setAttribute("src", "../images/copertine/" + libro.titolo + ".jpg");
-            cardImg.setAttribute("alt", libro.titolo);
-            cardImg.onerror = function () {
-                this.src = "../images/libroSenzaCopertina.png";
-            };
-            link.appendChild(cardImg);
+                let link = document.createElement('a');
+                link.href = "libroAperto.html?isbn=" + libro.isbn;
+
+                let cardImg = document.createElement("img");
+                cardImg.classList.add("card-img-top");
+                cardImg.setAttribute("src", "../images/copertine/" + libro.titolo + ".jpg");
+                cardImg.setAttribute("alt", libro.titolo);
+                cardImg.onerror = function () {
+                    let immagineURL = localStorage.getItem(`immagine_${libro.isbn}`);
+                    if (immagineURL) {
+                        this.src = immagineURL; 
+                    } else {
+                        this.src = "../images/icon.png";
+                    }                };
+                link.appendChild(cardImg);
 
             let cardTitolo = document.createElement("h5");
             cardTitolo.classList.add("card-title");

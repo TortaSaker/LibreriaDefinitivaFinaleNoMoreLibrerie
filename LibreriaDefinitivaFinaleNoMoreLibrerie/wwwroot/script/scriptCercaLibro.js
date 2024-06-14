@@ -4,7 +4,7 @@ let currentPage = 1;
 const booksPerPage = 15;
 
 bottoneCerca.addEventListener("click", function () {
-    currentPage = 1; // Resetta la pagina corrente alla ricerca
+    currentPage = 1; 
     ricercaLibri();
 });
 
@@ -137,7 +137,7 @@ function generaRisultati(data) {
             });
         });
 
-        // Aggiunta delle frecce per la navigazione tra le pagine
+        //frecce per la navigazione tra le pagine
         const navigationDiv = document.createElement("div");
         navigationDiv.classList.add("pagination");
 

@@ -1,36 +1,46 @@
-﻿    let bottoneCerca = document.getElementById("cerca");
-    let container = document.getElementById("risultati-captati"); 
-    bottoneCerca.addEventListener("click", function () {
-        let input = document.getElementById("cerca-input").value;
-        if (!input) {
-            searchAllBooks();
-        } else {
-            searchBooksByQuery(input);
-        }
-    });
-    function controlloCampoIsEmpty(id, errorMessage) {
-        let field = document.getElementById(id);
-        if (field.value.trim() === "") {
-            mostraErroreInput(id, errorMessage);
-            return true;
-        } else {
-            rimuoviErroreInput(id);
-            return false;
-        }
-    }
+﻿let bottoneCerca = document.getElementById("cerca");
+let container = document.getElementById("risultati-captati");
+let currentPage = 1;
+const booksPerPage = 20;
 
-    function mostraErroreInput(id, message) {
-        let field = document.getElementById(id);
-        field.classList.add("input-error");
-        field.placeholder = message;
-        field.value = "";
-    }
+bottoneCerca.addEventListener("click", function () {
+    currentPage = 1; // Resetta la pagina corrente alla ricerca
+    ricercaLibri();
+});
 
-    function rimuoviErroreInput(id) {
-        let field = document.getElementById(id);
-        field.classList.remove("input-error");
-        field.placeholder = "";
+function ricercaLibri() {
+    let input = document.getElementById("cerca-input").value.trim();
+    if (!input) {
+        searchAllBooks();
+    } else {
+        searchBooksByQuery(input);
     }
+}
+
+function controlloCampoIsEmpty(id, errorMessage) {
+    let field = document.getElementById(id);
+    if (field.value.trim() === "") {
+        mostraErroreInput(id, errorMessage);
+        return true;
+    } else {
+        rimuoviErroreInput(id);
+        return false;
+    }
+}
+
+function mostraErroreInput(id, message) {
+    let field = document.getElementById(id);
+    field.classList.add("input-error");
+    field.placeholder = message;
+    field.value = "";
+}
+
+function rimuoviErroreInput(id) {
+    let field = document.getElementById(id);
+    field.classList.remove("input-error");
+    field.placeholder = "";
+}
+
 function searchAllBooks() {
     fetch("https://localhost:7268/api/Libro/GetAllBooks/GetAllLibri")
         .then(response => {
@@ -39,90 +49,126 @@ function searchAllBooks() {
             }
             return response.json();
         })
-        .then(data => generaRisultati(data))
+        .then(data => {
+            generaRisultati(data);
+        })
         .catch(error => mostraMessaggioErrore("Errore durante il recupero dei libri: " + error));
-
 }
 
-    function searchBooksByQuery(input) {
-        fetch(`/api/Libro/SearchBooks/${encodeURIComponent(input)}`)
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(errorData => { throw new Error(errorData.error); });
-                }
-                return response.json();
-            })
-            .then(data => generaRisultati(data))
-            .catch(error => mostraMessaggioErrore(error.message));
-    }
+function searchBooksByQuery(input) {
+    fetch(`/api/Libro/SearchBooks/${encodeURIComponent(input)}`)
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            generaRisultati(data);
+        })
+        .catch(error => mostraMessaggioErrore(error.message));
+}
+
 function generaRisultati(data) {
-    libri = data.$values;
+    const libri = data.$values;
     container.innerHTML = "";
 
     if (!Array.isArray(libri)) {
-            mostraMessaggioErrore("La risposta non è un array.");
-            return;
-        }
-        if (libri === null || libri.length === 0) {
-            mostraMessaggioErrore("Non sono stati trovati libri con queste caratteristiche.");
-        } else {
-            libri.forEach(libro => {
-                let card = document.createElement("div");
-                card.classList.add("card");
+        mostraMessaggioErrore("La risposta non è un array.");
+        return;
+    }
+    if (libri === null || libri.length === 0) {
+        mostraMessaggioErrore("Non sono stati trovati libri con queste caratteristiche.");
+    } else {
+        const startIndex = (currentPage - 1) * booksPerPage;
+        const endIndex = startIndex + booksPerPage;
+        const currentBooks = libri.slice(startIndex, endIndex);
 
-                let cardBody = document.createElement("div");
-                cardBody.classList.add("card-body");
+        currentBooks.forEach(libro => {
+            let card = document.createElement("div");
+            card.classList.add("card");
 
-                let link = document.createElement('a');
-                link.href = "libroAperto.html?isbn=" + libro.isbn;
-                let cardImg = document.createElement("img");
-                cardImg.classList.add("card-img-top");
-                cardImg.setAttribute("src", "../images/copertine/" + libro.titolo + ".jpg");
-                cardImg.setAttribute("alt", libro.titolo);
-                cardImg.onerror = function () {
-                    this.src = "../images/icon.png";
-                };
-                link.appendChild(cardImg);
+            let cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
 
-                let cardTitolo = document.createElement("h5");
-                cardTitolo.classList.add("card-title");
-                cardTitolo.textContent = libro.titolo;
-                cardBody.appendChild(cardTitolo);
+            let link = document.createElement('a');
+            link.href = "libroAperto.html?isbn=" + libro.isbn;
+            let cardImg = document.createElement("img");
+            cardImg.classList.add("card-img-top");
+            cardImg.setAttribute("src", "../images/copertine/" + libro.titolo + ".jpg");
+            cardImg.setAttribute("alt", libro.titolo);
+            cardImg.onerror = function () {
+                this.src = "../images/icon.png";
+            };
+            link.appendChild(cardImg);
 
-                let cardAutore = document.createElement("h6");
-                cardAutore.classList.add("card-subtitle", "mb-2", "text-muted");
-                cardAutore.textContent = libro.autore;
-                cardBody.appendChild(cardAutore);
+            let cardTitolo = document.createElement("h5");
+            cardTitolo.classList.add("card-title");
+            cardTitolo.textContent = libro.titolo;
+            cardBody.appendChild(cardTitolo);
 
-                let cardPrezzo = document.createElement("p");
-                cardPrezzo.classList.add("card-text");
-                cardPrezzo.textContent = "Prezzo: " + libro.prezzo + " €";
-                cardBody.appendChild(cardPrezzo);
+            let cardAutore = document.createElement("h6");
+            cardAutore.classList.add("card-subtitle", "mb-2", "text-muted");
+            cardAutore.textContent = libro.autore;
+            cardBody.appendChild(cardAutore);
 
-                card.appendChild(link);
-                card.appendChild(cardBody);
-                container.appendChild(card);
+            let cardPrezzo = document.createElement("p");
+            cardPrezzo.classList.add("card-text");
+            cardPrezzo.textContent = "Prezzo: " + libro.prezzo + " €";
+            cardBody.appendChild(cardPrezzo);
 
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    localStorage.setItem('isbn', JSON.stringify(libro.isbn));
-                    localStorage.setItem('titolo', JSON.stringify(libro.titolo));
-                    localStorage.setItem('prezzo', JSON.stringify(libro.prezzo));
-                    localStorage.setItem('genere', JSON.stringify(libro.genere));
-                    localStorage.setItem('trama', JSON.stringify(libro.trama));
-                    localStorage.setItem('edizione', JSON.stringify(libro.edizione));
-                    localStorage.setItem('quantita', JSON.stringify(libro.quantita));
-                    localStorage.setItem('autore', JSON.stringify(libro.autore));
-                    window.location.href = link.href;
-                });
+            card.appendChild(link);
+            card.appendChild(cardBody);
+            container.appendChild(card);
+
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.setItem('isbn', JSON.stringify(libro.isbn));
+                localStorage.setItem('titolo', JSON.stringify(libro.titolo));
+                localStorage.setItem('prezzo', JSON.stringify(libro.prezzo));
+                localStorage.setItem('genere', JSON.stringify(libro.genere));
+                localStorage.setItem('trama', JSON.stringify(libro.trama));
+                localStorage.setItem('edizione', JSON.stringify(libro.edizione));
+                localStorage.setItem('quantita', JSON.stringify(libro.quantita));
+                localStorage.setItem('autore', JSON.stringify(libro.autore));
+                window.location.href = link.href;
             });
-        }
-    }
+        });
 
-    function mostraMessaggioErrore(message) {
-        container.innerHTML = "";
-        let paragrafoErrore = document.createElement("p");
-        paragrafoErrore.style.color = "red";
-        paragrafoErrore.textContent = message;
-        container.appendChild(paragrafoErrore);
+        // Aggiunta delle frecce per la navigazione tra le pagine
+        const navigationDiv = document.createElement("div");
+        navigationDiv.classList.add("pagination");
+
+        if (currentPage > 1) {
+            const prevButton = document.createElement("button");
+            prevButton.textContent = "← Precedente";
+            prevButton.addEventListener("click", () => {
+                currentPage--;
+                generaRisultati(data);
+            });
+            navigationDiv.appendChild(prevButton);
+        }
+
+        if (libri.length > endIndex) {
+            const nextButton = document.createElement("button");
+            nextButton.textContent = "Successiva →";
+            nextButton.addEventListener("click", () => {
+                currentPage++;
+                generaRisultati(data);
+            });
+            navigationDiv.appendChild(nextButton);
+        }
+
+        container.appendChild(navigationDiv);
     }
+}
+
+function mostraMessaggioErrore(message) {
+    container.innerHTML = "";
+    let paragrafoErrore = document.createElement("p");
+    paragrafoErrore.style.color = "red";
+    paragrafoErrore.textContent = message;
+    container.appendChild(paragrafoErrore);
+}

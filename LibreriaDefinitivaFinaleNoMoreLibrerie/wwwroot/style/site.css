@@ -299,3 +299,16 @@ input[type="text"], select {
         color: red !important;
         font-weight: bold;
     }
+
+.pagination {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 100px;
+    width: 300px;
+}
+
+    .pagination button {
+        margin-left: 10px; /* Aggiunge uno spazio tra i bottoni */
+        cursor: pointer;
+    }

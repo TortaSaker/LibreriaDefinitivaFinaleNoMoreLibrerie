@@ -80,7 +80,7 @@ function generaRisultati(data) {
                 cardImg.setAttribute("src", "../images/copertine/" + libro.titolo + ".jpg");
                 cardImg.setAttribute("alt", libro.titolo);
                 cardImg.onerror = function () {
-                    this.src = "../images/icon.png";
+                    this.src = "../images/libroSenzaCopertina.png";
                 };
                 link.appendChild(cardImg);
 

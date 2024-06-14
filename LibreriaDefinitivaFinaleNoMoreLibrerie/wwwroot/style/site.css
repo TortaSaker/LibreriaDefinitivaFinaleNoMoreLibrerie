@@ -2,7 +2,9 @@
 body {
     background-image: url("../images/bg.jpg");
     font-family: Arial, sans-serif;
-    height: 100vh;
+    height: 100%;
+    margin: 0;
+    width: 100%;
     display: flex;
     flex-direction: column; /* Make the body a flex container for vertical alignment */
 }
@@ -298,4 +300,17 @@ input[type="text"], select {
     .input-error::placeholder {
         color: red !important;
         font-weight: bold;
+    }
+
+.pagination {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 100px;
+    width: 300px;
+}
+
+    .pagination button {
+        margin-left: 10px; /* Aggiunge uno spazio tra i bottoni */
+        cursor: pointer;
     }

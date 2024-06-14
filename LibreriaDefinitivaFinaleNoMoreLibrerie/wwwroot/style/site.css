@@ -193,6 +193,22 @@ input[type="text"], select {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         background-color: #fff;
     }
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical; /* Permette il ridimensionamento verticale dell'area di testo */
+}
 
 #book-detail {
     display: flex;

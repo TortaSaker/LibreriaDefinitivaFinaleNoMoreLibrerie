@@ -142,7 +142,6 @@ function generaRisultati(data) {
             });
         });
 
-        //frecce per la navigazione tra le pagine
         const navigationDiv = document.createElement("div");
         navigationDiv.classList.add("pagination");
 

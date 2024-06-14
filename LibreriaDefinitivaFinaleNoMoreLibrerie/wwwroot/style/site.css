@@ -2,11 +2,9 @@
 body {
     background-image: url("../images/bg.jpg");
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column; /* Make the body a flex container for vertical alignment */
-    min-height: 100vh; /* Ensure the body takes up full viewport height */
 }
 
 /* Header styles */
@@ -37,12 +35,11 @@ nav {
 
 /* Main content styles */
 #main-content {
+    align-self: center;
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    width: 800px;
     background-color: #fff;
-    border-radius: 5px;
-    flex: 1; /* Allow the main content to grow and shrink */
+    border-radius: 10px;
 }
 
 h2 {
@@ -240,10 +237,9 @@ input[type="text"], select {
         background-color: #555;
     }
 
-#card-container, #risultati-captati {
+#card-container, #risultati-captati {   /*Libri che vengono visualizzati in carcaLibro.htmol*/
     display: flex;
     flex-wrap: wrap;
-    /*justify-content: center;*/
     margin-top: 20px;
 }
 
@@ -251,9 +247,9 @@ input[type="text"], select {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    width: 360px;
+    width: 30%;
     margin: 10px;
-    padding: 20px;
+    padding: 10px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);

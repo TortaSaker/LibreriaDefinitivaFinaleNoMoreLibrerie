@@ -119,13 +119,13 @@
 
                 let paragrafoRingraziementi = document.createElement("p");
                 paragrafoRingraziementi.style.color = "green";
-                paragrafoRingraziementi.textContent = "Grazie per l'acquisto!";
+                paragrafoRingraziementi.textContent = "Grazie per l'acquisto! In 5 secondi verrai reindirizzato alla HomePage";
                 contenitoreParagrafo.appendChild(paragrafoRingraziementi);
 
                 localStorage.removeItem('carrello');
 
                 setTimeout(() => {
-                    window.location.href = 'carrello.html';
+                    window.location.href = 'index.html';
                 }, 5000); 
             });
         });

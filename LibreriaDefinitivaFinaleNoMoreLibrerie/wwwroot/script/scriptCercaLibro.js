@@ -1,7 +1,7 @@
 ﻿let bottoneCerca = document.getElementById("cerca");
 let container = document.getElementById("risultati-captati");
 let currentPage = 1;
-const booksPerPage = 20;
+const booksPerPage = 15;
 
 bottoneCerca.addEventListener("click", function () {
     currentPage = 1; // Resetta la pagina corrente alla ricerca
